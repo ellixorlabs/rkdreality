@@ -51,14 +51,14 @@ export function Footer() {
             </p>
             <ul className="mt-6 space-y-3 text-sm text-ivory/70">
               <li className="flex items-center gap-2.5">
-                <Phone className="size-4 text-gold-soft" /> +91 97400 915582
+                <Phone className="size-4 text-gold-soft" /> +91 97400 91582
               </li>
               <li className="flex items-center gap-2.5">
                 <Mail className="size-4 text-gold-soft" /> contact@rkdreality.com
               </li>
               <li className="flex items-start gap-2.5">
                 <MapPin className="mt-0.5 size-4 text-gold-soft" />
-                MG Road, Bangalore &middot; Sayyaji Rao Rd, Mysore
+                #08, Hormavu Kalkare Main Road, Banglore - 560043
               </li>
             </ul>
           </div>

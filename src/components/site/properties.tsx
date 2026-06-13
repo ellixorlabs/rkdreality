@@ -40,7 +40,7 @@ function waLink(p: Property) {
   const msg = encodeURIComponent(
     `Hello RKD Reality, I'm interested in "${p.title}" (${p.location}). Please share details and arrange a site visit.`
   );
-  return `https://wa.me/9197400915582?text=${msg}`;
+  return `https://wa.me/919740091582?text=${msg}`;
 }
 
 function PropertyCard({

@@ -62,14 +62,14 @@ export function Navbar() {
 
         <div className="flex items-center gap-3">
           <a
-            href="tel:+9197400915582"
+            href="tel:+919740091582"
             className={cn(
               "hidden items-center gap-2 text-sm md:flex",
               scrolled ? "text-foreground/70" : "text-ivory/80"
             )}
           >
             <Phone className="size-3.5" />
-            +91 97400 915582
+            +91 97400 91582
           </a>
           <a
             href="#contact"

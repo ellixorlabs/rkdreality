@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { MessageCircle, X } from "lucide-react";
 
 const href =
-  "https://wa.me/9197400915582?text=" +
+  "https://wa.me/919740091582?text=" +
   encodeURIComponent("Hello RKD Reality, I'd like to know more about your verified land opportunities.");
 
 export function WhatsAppFloat() {

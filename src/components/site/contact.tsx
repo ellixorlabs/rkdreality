@@ -25,12 +25,12 @@ import { Reveal } from "@/components/motion/reveal";
 import { propertyTypes, cities } from "@/lib/properties";
 
 const channels = [
-  { icon: Phone, label: "Call us", value: "+91 97400 915582", href: "tel:+9197400915582" },
+  { icon: Phone, label: "Call us", value: "+91 97400 91582", href: "tel:+919740091582" },
   {
     icon: MessageCircle,
     label: "WhatsApp",
-    value: "+91 97400 915582",
-    href: "https://wa.me/9197400915582",
+    value: "+91 97400 91582",
+    href: "https://wa.me/919740091582",
   },
   { icon: Mail, label: "Email", value: "contact@rkdreality.com", href: "mailto:contact@rkdreality.com" },
 ];
@@ -120,7 +120,7 @@ export function Contact() {
             <div className="relative mt-10 space-y-2 border-t border-ivory/15 pt-6 text-sm text-ivory/70">
               <p className="flex items-center gap-2">
                 <MapPin className="size-4 text-gold-soft" />
-                MG Road, Bangalore · Sayyaji Rao Rd, Mysore
+                #08, Hormavu Kalkare Main Road, Banglore - 560043
               </p>
               <p className="flex items-center gap-2">
                 <Clock className="size-4 text-gold-soft" />

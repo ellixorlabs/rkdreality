@@ -94,61 +94,11 @@ export const properties: Property[] = [
     highlights: ["Highway Facing", "High Footfall", "Encumbrance-Free"],
     appreciation: "Prime rental yield zone",
   },
-  {
-    id: "rkd-devanahalli-jv",
-    title: "Devanahalli Aero JV",
-    location: "Near Kempegowda Int'l Airport",
-    city: "Bangalore",
-    type: "Joint Venture",
-    priceLabel: "Investor partnership",
-    priceFrom: 500,
-    sizeLabel: "3.5 acre parcel",
-    status: "Few Plots Left",
-    image:
-      "https://images.unsplash.com/photo-1444858345149-8ab2f3387dcf?auto=format&fit=crop&w=1400&q=80",
-    rera: "PRM/KA/RERA/1251/498/PR/2024",
-    highlights: ["Airport Corridor", "Revenue Share", "Phased Returns"],
-    appreciation: "Airport-led appreciation",
-  },
-  {
-    id: "rkd-srirangapatna-farm",
-    title: "Cauvery Bank Farm Plots",
-    location: "Srirangapatna Belt",
-    city: "Mysore",
-    type: "Farm Land",
-    priceLabel: "₹18.0 L onwards",
-    priceFrom: 18.0,
-    sizeLabel: "0.25 – 1 acre",
-    status: "Available",
-    image:
-      "https://images.unsplash.com/photo-1523741543316-beb7fc7023d8?auto=format&fit=crop&w=1400&q=80",
-    rera: "PRM/KA/RERA/1253/118/PR/2024",
-    highlights: ["River-Fed Soil", "Clear Patta", "Managed Farming"],
-    appreciation: "~9% p.a. + yield",
-  },
-  {
-    id: "rkd-nelamangala-industrial",
-    title: "Dabaspete Industrial Plots",
-    location: "NH-48, Dabaspete",
-    city: "Nelamangala",
-    type: "Commercial Land",
-    priceLabel: "₹62.0 L onwards",
-    priceFrom: 62.0,
-    sizeLabel: "5,000 – 20,000 sq.ft",
-    status: "Available",
-    image:
-      "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=1400&q=80",
-    rera: "PRM/KA/RERA/1251/501/PR/2024",
-    highlights: ["KIADB Belt", "Logistics Hub", "Wide Frontage"],
-    appreciation: "Warehousing demand surge",
-  },
 ];
 
 export const propertyTypes: PropertyType[] = [
   "Residential Plots",
   "Commercial Land",
-  "Joint Venture",
-  "Farm Land",
 ];
 
 export const cities = ["Bangalore", "Mysore", "Nelamangala"] as const;
