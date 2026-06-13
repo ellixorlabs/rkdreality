@@ -3,7 +3,8 @@ export type PropertyType =
   | "Residential Plots"
   | "Commercial Land"
   | "Joint Venture"
-  | "Farm Land";
+  | "Farm Land"
+  | "Farm Plots";
 
 export interface Property {
   id: string;
@@ -16,7 +17,6 @@ export interface Property {
   sizeLabel: string;
   status: PropertyStatus;
   image: string;
-  rera: string;
   highlights: string[];
   appreciation: string;
   gallery?: string[];
@@ -25,13 +25,13 @@ export interface Property {
 export const properties: Property[] = [
   {
     id: "rkd-bangalore-site-1",
-    title: "Banglore Site 1",
-    location: "Bangalore",
-    city: "Bangalore",
-    type: "Residential Plots",
-    priceLabel: "₹42.0 L onwards",
-    priceFrom: 42.0,
-    sizeLabel: "1,200 – 2,400 sq.ft",
+    title: "Farm Falts",
+    location: "Mysore",
+    city: "Mysore",
+    type: "Farm Plots",
+    priceLabel: "₹1000/sqft Onwards",
+    priceFrom: 1000,
+    sizeLabel: "75 x 75 sq.ft",
     status: "Available",
     image: "https://i.imageupload.app/baeafab2bc626fafbbe1.jpeg",
     gallery: [
@@ -42,8 +42,7 @@ export const properties: Property[] = [
       "https://i.imageupload.app/3a7453d79aca172506b1.jpeg",
       "https://i.imageupload.app/cf9ba7d7860154e95385.jpeg",
     ],
-    rera: "PRM/KA/RERA/1251/512/PR/2024",
-    highlights: ["BMRDA Approved", "Clear Title", "On-Ground Photos"],
+    highlights: ["Panchayat Approved", "Farm Land", "On-Ground Photos"],
     appreciation: "~13% p.a. corridor growth",
   },
   {
@@ -58,7 +57,6 @@ export const properties: Property[] = [
     status: "Few Plots Left",
     image:
       "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1400&q=80",
-    rera: "PRM/KA/RERA/1251/446/PR/2024",
     highlights: ["BMRDA Approved", "Clear Title", "Gated Layout"],
     appreciation: "~14% p.a. corridor growth",
   },
@@ -74,7 +72,6 @@ export const properties: Property[] = [
     status: "Available",
     image:
       "https://images.unsplash.com/photo-1416331108676-a22ccb276e35?auto=format&fit=crop&w=1400&q=80",
-    rera: "PRM/KA/RERA/1252/309/PR/2024",
     highlights: ["DTCP Approved", "Title Insured", "Near Infosys Campus"],
     appreciation: "~11% p.a. steady demand",
   },
@@ -90,7 +87,6 @@ export const properties: Property[] = [
     status: "Available",
     image:
       "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=80",
-    rera: "PRM/KA/RERA/1251/472/PR/2023",
     highlights: ["Highway Facing", "High Footfall", "Encumbrance-Free"],
     appreciation: "Prime rental yield zone",
   },
@@ -99,6 +95,7 @@ export const properties: Property[] = [
 export const propertyTypes: PropertyType[] = [
   "Residential Plots",
   "Commercial Land",
+  "Farm Plots",
 ];
 
 export const cities = ["Bangalore", "Mysore", "Nelamangala"] as const;

@@ -166,9 +166,6 @@ function PropertyCard({
             <ArrowUpRight className="size-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
           </a>
         </div>
-        <p className="mt-4 truncate text-[0.66rem] uppercase tracking-[0.1em] text-muted-foreground/80">
-          RERA · {p.rera}
-        </p>
       </div>
     </motion.article>
   );
