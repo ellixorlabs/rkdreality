@@ -1,26 +1,127 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+  --font-mono: var(--font-mono);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Brand tokens */
+  --color-forest: var(--forest);
+  --color-forest-deep: var(--forest-deep);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-ivory: var(--ivory);
+  --color-sand: var(--sand);
+  --color-clay: var(--clay);
+
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius-lg: 4px;
+  --radius-xl: 6px;
+  --radius-2xl: 10px;
+  --radius-3xl: 16px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --radius: 4px;
+
+  --ivory: #f7f2e8;
+  --sand: #ece3d2;
+  --clay: #9c7a53;
+  --gold: #b08d4c;
+  --gold-soft: #c9a85f;
+  --forest: #243528;
+  --forest-deep: #16221a;
+
+  --background: #f7f2e8;
+  --foreground: #1d251e;
+
+  --card: #fffdf7;
+  --card-foreground: #1d251e;
+
+  --popover: #fffdf7;
+  --popover-foreground: #1d251e;
+
+  --primary: #1b2a1f;
+  --primary-foreground: #f3eddf;
+
+  --secondary: #ece3d2;
+  --secondary-foreground: #29331f;
+
+  --muted: #efe8da;
+  --muted-foreground: #6c6a5b;
+
+  --accent: #b08d4c;
+  --accent-foreground: #1d251e;
+
+  --destructive: #9a3b2c;
+
+  --border: #e0d8c6;
+  --input: #e0d8c6;
+  --ring: #b08d4c;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/40;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "ss01", "cv01";
+    -webkit-font-smoothing: antialiased;
+  }
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+  }
+  ::selection {
+    background: var(--forest);
+    color: var(--ivory);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .font-serif {
+    font-family: var(--font-serif), Georgia, serif;
+  }
+  .kicker {
+    @apply inline-flex items-center gap-2 text-[0.7rem] font-medium uppercase tracking-[0.28em];
+  }
+  .rule {
+    @apply h-px w-full bg-border;
+  }
+  /* Subtle paper grain so flat sections never look "AI-flat" */
+  .grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
 }
