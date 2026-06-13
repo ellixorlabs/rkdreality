@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 import { Loader } from "@/components/site/loader";
 
 const inter = Inter({
@@ -49,6 +50,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <Loader />
         {children}
+        <Analytics />
       </body>
     </html>
   );

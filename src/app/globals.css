@@ -124,4 +124,37 @@
   .text-balance {
     text-wrap: balance;
   }
+  /* Colorful flowing gradient used for the "Ellixor Labs" credit */
+  .text-gradient-flow {
+    background-image: linear-gradient(
+      100deg,
+      #c9a85f,
+      #e7775a,
+      #d65db1,
+      #845ec2,
+      #2c9c8f,
+      #c9a85f
+    );
+    background-size: 280% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: gradient-flow 6s linear infinite;
+  }
+}
+
+@keyframes gradient-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 280% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text-gradient-flow {
+    animation: none;
+  }
 }

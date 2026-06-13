@@ -1,5 +1,11 @@
+import Link from "next/link";
 import { Logo } from "./logo";
 import { Mail, MapPin, Phone } from "lucide-react";
+
+const legalLinks = [
+  { label: "Terms", href: "/terms" },
+  { label: "Privacy Policy", href: "/privacy" },
+];
 
 const columns = [
   {
@@ -80,14 +86,43 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col gap-4 border-t border-ivory/15 pt-8 text-xs text-ivory/50 sm:flex-row sm:items-center sm:justify-between">
-          <p>
-            &copy; {new Date().getFullYear()} RKD Reality. All rights reserved.
-          </p>
-          <p className="max-w-xl sm:text-right">
-            RERA registered layouts where applicable. All listings are subject to
-            independent legal verification before purchase.
-          </p>
+        <p className="mt-14 border-t border-ivory/15 pt-8 text-xs leading-relaxed text-ivory/45">
+          RERA registered layouts where applicable. All listings are subject to
+          independent legal verification before purchase.
+        </p>
+
+        <div className="mt-6 flex flex-col gap-4 text-xs text-ivory/50 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+            <p>
+              &copy; {new Date().getFullYear()} RKD Reality. All rights
+              reserved.
+            </p>
+            <nav className="flex items-center gap-x-5">
+              {legalLinks.map((l) => (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  className="transition-colors hover:text-ivory"
+                >
+                  {l.label}
+                </Link>
+              ))}
+            </nav>
+          </div>
+
+          <a
+            href="https://ellixorlabs.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-1.5"
+          >
+            <span className="text-ivory/45 transition-colors group-hover:text-ivory/70">
+              Designed by
+            </span>
+            <span className="text-gradient-flow font-serif text-sm font-semibold tracking-wide">
+              Ellixor Labs
+            </span>
+          </a>
         </div>
       </div>
     </footer>
