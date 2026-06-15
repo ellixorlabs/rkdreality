@@ -22,18 +22,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Reveal } from "@/components/motion/reveal";
-import { propertyTypes, cities } from "@/lib/properties";
 
-const channels = [
-  { icon: Phone, label: "Call us", value: "+91 97400 91582", href: "tel:+919740091582" },
-  {
-    icon: MessageCircle,
-    label: "WhatsApp",
-    value: "+91 97400 91582",
-    href: "https://wa.me/919740091582",
-  },
-  { icon: Mail, label: "Email", value: "contact@rkdreality.com", href: "mailto:contact@rkdreality.com" },
-];
+type ContactInfo = {
+  phone?: string;
+  whatsappNumber?: string;
+  email?: string;
+  address?: string;
+  hours?: string;
+};
 
 const fieldClass =
   "h-11 w-full rounded-sm border border-input bg-background px-3 text-sm outline-none transition-all duration-200 hover:border-gold/50 focus:border-gold focus:ring-2 focus:ring-gold/15";
@@ -55,11 +51,48 @@ const formItem: Variants = {
   },
 };
 
-export function Contact() {
+export function Contact({
+  contact,
+  propertyTypes = [],
+  cities = [],
+}: {
+  contact?: ContactInfo;
+  propertyTypes?: string[];
+  cities?: string[];
+}) {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [interest, setInterest] = useState("");
   const [city, setCity] = useState("");
+
+  const address = contact?.address;
+  const hours = contact?.hours;
+
+  const channels = [
+    contact?.phone && {
+      icon: Phone,
+      label: "Call us",
+      value: contact.phone,
+      href: `tel:${contact.phone.replace(/\s/g, "")}`,
+    },
+    contact?.whatsappNumber && {
+      icon: MessageCircle,
+      label: "WhatsApp",
+      value: contact.phone ?? contact.whatsappNumber,
+      href: `https://wa.me/${contact.whatsappNumber}`,
+    },
+    contact?.email && {
+      icon: Mail,
+      label: "Email",
+      value: contact.email,
+      href: `mailto:${contact.email}`,
+    },
+  ].filter(Boolean) as {
+    icon: typeof Phone;
+    label: string;
+    value: string;
+    href: string;
+  }[];
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -117,16 +150,22 @@ export function Contact() {
               ))}
             </ul>
 
-            <div className="relative mt-10 space-y-2 border-t border-ivory/15 pt-6 text-sm text-ivory/70">
-              <p className="flex items-center gap-2">
-                <MapPin className="size-4 text-gold-soft" />
-                #08, Hormavu Kalkare Main Road, Banglore - 560043
-              </p>
-              <p className="flex items-center gap-2">
-                <Clock className="size-4 text-gold-soft" />
-                Mon–Sat · 9:30 AM – 7:00 PM
-              </p>
-            </div>
+            {(address || hours) && (
+              <div className="relative mt-10 space-y-2 border-t border-ivory/15 pt-6 text-sm text-ivory/70">
+                {address && (
+                  <p className="flex items-center gap-2">
+                    <MapPin className="size-4 text-gold-soft" />
+                    {address}
+                  </p>
+                )}
+                {hours && (
+                  <p className="flex items-center gap-2">
+                    <Clock className="size-4 text-gold-soft" />
+                    {hours}
+                  </p>
+                )}
+              </div>
+            )}
           </div>
 
           {/* Right — form */}

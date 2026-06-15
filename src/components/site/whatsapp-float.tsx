@@ -4,13 +4,19 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { MessageCircle, X } from "lucide-react";
 
-const href =
-  "https://wa.me/919740091582?text=" +
-  encodeURIComponent("Hello RKD Reality, I'd like to know more about your verified land opportunities.");
-
-export function WhatsAppFloat() {
+export function WhatsAppFloat({
+  whatsappNumber = "919740091582",
+}: {
+  whatsappNumber?: string;
+}) {
   const [show, setShow] = useState(false);
   const [hint, setHint] = useState(false);
+
+  const href =
+    `https://wa.me/${whatsappNumber}?text=` +
+    encodeURIComponent(
+      "Hello RKD Reality, I'd like to know more about your verified land opportunities."
+    );
 
   useEffect(() => {
     const t1 = setTimeout(() => setShow(true), 1200);

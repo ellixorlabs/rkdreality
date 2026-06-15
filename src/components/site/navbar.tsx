@@ -15,9 +15,10 @@ const links = [
   { href: "#contact", label: "Contact" },
 ];
 
-export function Navbar() {
+export function Navbar({ phone = "+91 97400 91582" }: { phone?: string }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const telHref = `tel:${phone.replace(/\s/g, "")}`;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -62,14 +63,14 @@ export function Navbar() {
 
         <div className="flex items-center gap-3">
           <a
-            href="tel:+919740091582"
+            href={telHref}
             className={cn(
               "hidden items-center gap-2 text-sm md:flex",
               scrolled ? "text-foreground/70" : "text-ivory/80"
             )}
           >
             <Phone className="size-3.5" />
-            +91 97400 91582
+            {phone}
           </a>
           <a
             href="#contact"

@@ -1,14 +1,6 @@
-const approvals = [
-  "RERA Registered",
-  "BMRDA Approved",
-  "BDA Sanctioned",
-  "DTCP Cleared",
-  "KIADB Allotted",
-  "Title Insured",
-  "Encumbrance-Free",
-];
+export function TrustStrip({ approvals }: { approvals?: string[] }) {
+  if (!approvals || approvals.length === 0) return null;
 
-export function TrustStrip() {
   return (
     <div className="border-y border-border bg-card">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-8 gap-y-3 px-5 py-6 sm:gap-x-12 sm:px-8">

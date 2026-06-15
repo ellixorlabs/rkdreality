@@ -37,7 +37,32 @@ const columns = [
   },
 ];
 
-export function Footer() {
+type ContactInfo = {
+  phone?: string;
+  email?: string;
+  address?: string;
+};
+
+const DEFAULTS = {
+  phone: "+91 97400 91582",
+  email: "contact@rkdreality.com",
+  address: "#08, Hormavu Kalkare Main Road, Banglore - 560043",
+  description:
+    "Helping first-time investors buy verified, legally secure land across Bangalore, Mysore and Nelamangala — with transparency at every step.",
+};
+
+export function Footer({
+  contact,
+  description,
+}: {
+  contact?: ContactInfo;
+  description?: string;
+}) {
+  const phone = contact?.phone || DEFAULTS.phone;
+  const email = contact?.email || DEFAULTS.email;
+  const address = contact?.address || DEFAULTS.address;
+  const blurb = description || DEFAULTS.description;
+
   return (
     <footer className="grain relative bg-forest-deep text-ivory">
       <div className="relative mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
@@ -45,20 +70,18 @@ export function Footer() {
           <div className="lg:col-span-4">
             <Logo imgClassName="h-11" />
             <p className="mt-6 max-w-xs text-sm leading-relaxed text-ivory/65">
-              Helping first-time investors buy verified, legally secure land
-              across Bangalore, Mysore and Nelamangala — with transparency at
-              every step.
+              {blurb}
             </p>
             <ul className="mt-6 space-y-3 text-sm text-ivory/70">
               <li className="flex items-center gap-2.5">
-                <Phone className="size-4 text-gold-soft" /> +91 97400 91582
+                <Phone className="size-4 text-gold-soft" /> {phone}
               </li>
               <li className="flex items-center gap-2.5">
-                <Mail className="size-4 text-gold-soft" /> contact@rkdreality.com
+                <Mail className="size-4 text-gold-soft" /> {email}
               </li>
               <li className="flex items-start gap-2.5">
                 <MapPin className="mt-0.5 size-4 text-gold-soft" />
-                #08, Hormavu Kalkare Main Road, Banglore - 560043
+                {address}
               </li>
             </ul>
           </div>

@@ -23,12 +23,7 @@ import {
 } from "@/components/ui/select";
 import { Reveal } from "@/components/motion/reveal";
 import { cn } from "@/lib/utils";
-import {
-  properties,
-  propertyTypes,
-  cities,
-  type Property,
-} from "@/lib/properties";
+import type { Property } from "@/sanity/types";
 
 const statusStyles: Record<Property["status"], string> = {
   Available: "bg-forest/90 text-ivory",
@@ -36,19 +31,22 @@ const statusStyles: Record<Property["status"], string> = {
   "Sold Out": "bg-muted text-muted-foreground",
 };
 
-function waLink(p: Property) {
+function waLink(p: Property, whatsappNumber: string) {
+  if (!whatsappNumber) return "#contact";
   const msg = encodeURIComponent(
     `Hello RKD Reality, I'm interested in "${p.title}" (${p.location}). Please share details and arrange a site visit.`
   );
-  return `https://wa.me/919740091582?text=${msg}`;
+  return `https://wa.me/${whatsappNumber}?text=${msg}`;
 }
 
 function PropertyCard({
   p,
   onOpenGallery,
+  whatsappNumber,
 }: {
   p: Property;
   onOpenGallery: (p: Property) => void;
+  whatsappNumber: string;
 }) {
   const hasGallery = Boolean(p.gallery && p.gallery.length > 0);
   const photoCount = p.gallery?.length ?? 0;
@@ -157,7 +155,7 @@ function PropertyCard({
             <p className="font-serif text-2xl text-forest">{p.priceLabel}</p>
           </div>
           <a
-            href={waLink(p)}
+            href={waLink(p, whatsappNumber)}
             target="_blank"
             rel="noopener noreferrer"
             className="group/btn inline-flex items-center gap-1.5 rounded-sm bg-forest px-4 py-2.5 text-sm font-medium text-ivory transition-colors hover:bg-forest-deep"
@@ -171,7 +169,17 @@ function PropertyCard({
   );
 }
 
-export function Properties() {
+export function Properties({
+  items,
+  propertyTypes = [],
+  cities = [],
+  whatsappNumber = "",
+}: {
+  items: Property[];
+  propertyTypes?: string[];
+  cities?: string[];
+  whatsappNumber?: string;
+}) {
   const [type, setType] = useState<string>("all");
   const [city, setCity] = useState<string>("all");
   const [query, setQuery] = useState("");
@@ -192,7 +200,7 @@ export function Properties() {
   }, [activeGallery]);
 
   const filtered = useMemo(() => {
-    return properties.filter((p) => {
+    return items.filter((p) => {
       const matchType = type === "all" || p.type === type;
       const matchCity = city === "all" || p.city === city;
       const matchQuery =
@@ -202,7 +210,7 @@ export function Properties() {
           .includes(query.toLowerCase());
       return matchType && matchCity && matchQuery;
     });
-  }, [type, city, query]);
+  }, [items, type, city, query]);
 
   return (
     <section id="properties" className="relative scroll-mt-20 bg-sand/40 py-24 sm:py-32">
@@ -269,7 +277,12 @@ export function Properties() {
         <motion.div layout className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           <AnimatePresence mode="popLayout">
             {filtered.map((p) => (
-              <PropertyCard key={p.id} p={p} onOpenGallery={setActiveGallery} />
+              <PropertyCard
+                key={p.id}
+                p={p}
+                onOpenGallery={setActiveGallery}
+                whatsappNumber={whatsappNumber}
+              />
             ))}
           </AnimatePresence>
         </motion.div>

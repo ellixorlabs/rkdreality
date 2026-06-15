@@ -4,35 +4,38 @@ import Image from "next/image";
 import { Quote, Star } from "lucide-react";
 import { Reveal } from "@/components/motion/reveal";
 
-const featured = {
-  quote:
-    "I had been burned by a fake plot listing before, so I was terrified of buying land again. RKD showed me every document before I paid a rupee, drove me to the site twice, and explained the title history line by line. For the first time, investing felt safe.",
-  name: "Ananya Rao",
-  role: "First-time investor · Green Meadows, Nelamangala",
-  image:
-    "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80",
+type TestimonialView = {
+  quote: string;
+  name: string;
+  role?: string;
+  image?: string;
 };
 
-const supporting = [
-  {
-    quote:
-      "No hidden charges, no last-minute surprises. The price we discussed was the price on the sale deed. That honesty is rare.",
-    name: "Mahesh Gowda",
-    role: "Commercial plot · Whitefield",
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
-  },
-  {
-    quote:
-      "As an NRI I couldn't visit often. They sent verified documents, drone footage and handled registration flawlessly.",
-    name: "Priya Menon",
-    role: "Farm plot · Srirangapatna",
-    image:
-      "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80",
-  },
-];
+type TestimonialInput = {
+  id: string;
+  name: string;
+  role?: string;
+  quote: string;
+  featured?: boolean;
+  photo?: string;
+};
 
-export function Testimonials() {
+export function Testimonials({ items }: { items?: TestimonialInput[] }) {
+  if (!items || items.length === 0) return null;
+
+  const toView = (t: TestimonialInput): TestimonialView => ({
+    quote: t.quote,
+    name: t.name,
+    role: t.role,
+    image: t.photo,
+  });
+  const featuredDoc = items.find((t) => t.featured) ?? items[0];
+  const featured = toView(featuredDoc);
+  const supporting = items
+    .filter((t) => t.id !== featuredDoc.id)
+    .slice(0, 2)
+    .map(toView);
+
   return (
     <section id="testimonials" className="relative scroll-mt-20 bg-ivory py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
@@ -57,13 +60,15 @@ export function Testimonials() {
                 </blockquote>
               </div>
               <figcaption className="mt-8 flex items-center gap-4 border-t border-border pt-6">
-                <Image
-                  src={featured.image}
-                  alt={featured.name}
-                  width={56}
-                  height={56}
-                  className="size-14 rounded-full object-cover"
-                />
+                {featured.image && (
+                  <Image
+                    src={featured.image}
+                    alt={featured.name}
+                    width={56}
+                    height={56}
+                    className="size-14 rounded-full object-cover"
+                  />
+                )}
                 <div>
                   <p className="font-medium text-foreground">{featured.name}</p>
                   <p className="text-sm text-muted-foreground">{featured.role}</p>
@@ -91,13 +96,15 @@ export function Testimonials() {
                     &ldquo;{t.quote}&rdquo;
                   </blockquote>
                   <figcaption className="mt-5 flex items-center gap-3">
-                    <Image
-                      src={t.image}
-                      alt={t.name}
-                      width={40}
-                      height={40}
-                      className="size-10 rounded-full object-cover"
-                    />
+                    {t.image && (
+                      <Image
+                        src={t.image}
+                        alt={t.name}
+                        width={40}
+                        height={40}
+                        className="size-10 rounded-full object-cover"
+                      />
+                    )}
                     <div>
                       <p className="text-sm font-medium text-foreground">
                         {t.name}
