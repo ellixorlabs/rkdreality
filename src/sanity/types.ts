@@ -1,7 +1,16 @@
 export type PropertyStatus = "Available" | "Few Plots Left" | "Sold Out";
 
+export type Seo = {
+  metaTitle?: string;
+  metaDescription?: string;
+  keywords?: string[];
+  ogImage?: string;
+  noIndex?: boolean;
+};
+
 export type Property = {
   id: string;
+  slug: string;
   title: string;
   location: string;
   city: string;
@@ -14,6 +23,11 @@ export type Property = {
   highlights: string[];
   appreciation: string;
   gallery?: string[];
+  overview?: string[];
+  amenities?: string[];
+  locationHighlights?: string[];
+  mapUrl?: string;
+  seo?: Seo;
 };
 
 export type ContactInfo = {

@@ -4,6 +4,7 @@ import { client } from "./client";
 import type {
   Property,
   PropertyStatus,
+  Seo,
   SiteSettings,
   HeroContent,
   FounderData,
@@ -13,6 +14,7 @@ import type {
 
 type RawProperty = {
   _id: string;
+  slug?: string;
   title: string;
   location: string;
   city: string;
@@ -25,18 +27,17 @@ type RawProperty = {
   gallery?: string[];
   highlights?: string[];
   appreciation?: string;
+  overview?: string[];
+  amenities?: string[];
+  locationHighlights?: string[];
+  mapUrl?: string;
+  seo?: Seo;
 };
 
-export async function getProperties(): Promise<Property[]> {
-  const docs = await client.fetch<RawProperty[]>(
-    `*[_type == "property"] | order(coalesce(order, 999) asc, _createdAt desc){
-      _id, title, location, city, propertyType, priceLabel, priceFrom,
-      sizeLabel, status, image, gallery, highlights, appreciation
-    }`
-  );
-
-  return (docs ?? []).map((d) => ({
+function mapProperty(d: RawProperty): Property {
+  return {
     id: d._id,
+    slug: d.slug ?? "",
     title: d.title,
     location: d.location,
     city: d.city,
@@ -49,7 +50,46 @@ export async function getProperties(): Promise<Property[]> {
     highlights: d.highlights ?? [],
     appreciation: d.appreciation ?? "",
     gallery: d.gallery?.length ? d.gallery : undefined,
-  }));
+    overview: d.overview?.length ? d.overview : undefined,
+    amenities: d.amenities?.length ? d.amenities : undefined,
+    locationHighlights: d.locationHighlights?.length
+      ? d.locationHighlights
+      : undefined,
+    mapUrl: d.mapUrl || undefined,
+    seo: d.seo,
+  };
+}
+
+export async function getProperties(): Promise<Property[]> {
+  const docs = await client.fetch<RawProperty[]>(
+    `*[_type == "property"] | order(coalesce(order, 999) asc, _createdAt desc){
+      _id, "slug": slug.current, title, location, city, propertyType, priceLabel,
+      priceFrom, sizeLabel, status, image, gallery, highlights, appreciation
+    }`
+  );
+
+  return (docs ?? []).map(mapProperty);
+}
+
+export async function getProperty(slug: string): Promise<Property | null> {
+  const d = await client.fetch<RawProperty | null>(
+    `*[_type == "property" && slug.current == $slug][0]{
+      _id, "slug": slug.current, title, location, city, propertyType, priceLabel,
+      priceFrom, sizeLabel, status, image, gallery, highlights, appreciation,
+      overview, amenities, locationHighlights, mapUrl,
+      seo{metaTitle, metaDescription, keywords, ogImage, noIndex}
+    }`,
+    { slug }
+  );
+
+  return d ? mapProperty(d) : null;
+}
+
+export async function getPropertySlugs(): Promise<string[]> {
+  const slugs = await client.fetch<string[]>(
+    `*[_type == "property" && defined(slug.current)].slug.current`
+  );
+  return slugs ?? [];
 }
 
 export async function getSiteSettings(): Promise<SiteSettings | null> {

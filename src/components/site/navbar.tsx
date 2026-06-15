@@ -8,11 +8,11 @@ import { cn } from "@/lib/utils";
 import { Logo } from "./logo";
 
 const links = [
-  { href: "#why", label: "Why RKD" },
-  { href: "#properties", label: "Opportunities" },
-  { href: "#process", label: "Process" },
-  { href: "#testimonials", label: "Stories" },
-  { href: "#contact", label: "Contact" },
+  { href: "/#why", label: "Why RKD" },
+  { href: "/#properties", label: "Opportunities" },
+  { href: "/#process", label: "Process" },
+  { href: "/#testimonials", label: "Stories" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export function Navbar({ phone = "+91 97400 91582" }: { phone?: string }) {
@@ -40,7 +40,7 @@ export function Navbar({ phone = "+91 97400 91582" }: { phone?: string }) {
       )}
     >
       <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8">
-        <a href="#top" aria-label="RKD Reality home" className="shrink-0">
+        <a href="/" aria-label="RKD Reality home" className="shrink-0">
           <Logo dark={scrolled} priority />
         </a>
 
@@ -73,7 +73,7 @@ export function Navbar({ phone = "+91 97400 91582" }: { phone?: string }) {
             {phone}
           </a>
           <a
-            href="#contact"
+            href="/#contact"
             className="hidden items-center justify-center rounded-sm bg-gold px-5 py-2.5 text-sm font-medium text-forest-deep transition-colors hover:bg-gold-soft sm:inline-flex"
           >
             Book a Site Visit
@@ -104,7 +104,7 @@ export function Navbar({ phone = "+91 97400 91582" }: { phone?: string }) {
                   </a>
                 ))}
                 <a
-                  href="#contact"
+                  href="/#contact"
                   onClick={() => setOpen(false)}
                   className="mt-8 inline-flex items-center justify-center rounded-sm bg-forest px-5 py-3.5 text-sm font-medium text-ivory"
                 >

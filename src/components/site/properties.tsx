@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
 import {
   ArrowUpRight,
@@ -154,15 +155,25 @@ function PropertyCard({
             </p>
             <p className="font-serif text-2xl text-forest">{p.priceLabel}</p>
           </div>
-          <a
-            href={waLink(p, whatsappNumber)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group/btn inline-flex items-center gap-1.5 rounded-sm bg-forest px-4 py-2.5 text-sm font-medium text-ivory transition-colors hover:bg-forest-deep"
-          >
-            Enquire
-            <ArrowUpRight className="size-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
-          </a>
+          <div className="flex items-center gap-2.5">
+            <a
+              href={waLink(p, whatsappNumber)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center rounded-sm bg-forest px-4 py-2.5 text-sm font-medium text-ivory transition-colors hover:bg-forest-deep"
+            >
+              Enquire
+            </a>
+            {p.slug && (
+              <Link
+                href={`/property/${p.slug}`}
+                aria-label={`View details for ${p.title}`}
+                className="group/arrow grid size-11 shrink-0 place-items-center rounded-full border border-forest/30 text-forest transition-all duration-300 hover:border-forest hover:bg-forest hover:text-ivory"
+              >
+                <ArrowUpRight className="size-5 transition-transform duration-300 group-hover/arrow:translate-x-0.5 group-hover/arrow:-translate-y-0.5" />
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     </motion.article>
