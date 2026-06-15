@@ -53,7 +53,6 @@ export default async function Home() {
           items={properties}
           propertyTypes={propertyTypes}
           cities={cities}
-          whatsappNumber={contact?.whatsappNumber}
         />
         <Process />
         <Testimonials items={testimonials} />

@@ -32,22 +32,12 @@ const statusStyles: Record<Property["status"], string> = {
   "Sold Out": "bg-muted text-muted-foreground",
 };
 
-function waLink(p: Property, whatsappNumber: string) {
-  if (!whatsappNumber) return "#contact";
-  const msg = encodeURIComponent(
-    `Hello RKD Reality, I'm interested in "${p.title}" (${p.location}). Please share details and arrange a site visit.`
-  );
-  return `https://wa.me/${whatsappNumber}?text=${msg}`;
-}
-
 function PropertyCard({
   p,
   onOpenGallery,
-  whatsappNumber,
 }: {
   p: Property;
   onOpenGallery: (p: Property) => void;
-  whatsappNumber: string;
 }) {
   const hasGallery = Boolean(p.gallery && p.gallery.length > 0);
   const photoCount = p.gallery?.length ?? 0;
@@ -162,25 +152,15 @@ function PropertyCard({
             </p>
             <p className="font-serif text-2xl text-forest">{p.priceLabel}</p>
           </div>
-          <div className="flex items-center gap-2.5">
-            <a
-              href={waLink(p, whatsappNumber)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center rounded-sm bg-forest px-4 py-2.5 text-sm font-medium text-ivory transition-colors hover:bg-forest-deep"
+          {p.slug && (
+            <Link
+              href={`/property/${p.slug}`}
+              aria-label={`View details for ${p.title}`}
+              className="group/arrow grid size-11 shrink-0 place-items-center rounded-full border border-forest/30 text-forest transition-all duration-300 hover:border-forest hover:bg-forest hover:text-ivory"
             >
-              Enquire
-            </a>
-            {p.slug && (
-              <Link
-                href={`/property/${p.slug}`}
-                aria-label={`View details for ${p.title}`}
-                className="group/arrow grid size-11 shrink-0 place-items-center rounded-full border border-forest/30 text-forest transition-all duration-300 hover:border-forest hover:bg-forest hover:text-ivory"
-              >
-                <ArrowUpRight className="size-5 transition-transform duration-300 group-hover/arrow:translate-x-0.5 group-hover/arrow:-translate-y-0.5" />
-              </Link>
-            )}
-          </div>
+              <ArrowUpRight className="size-5 transition-transform duration-300 group-hover/arrow:translate-x-0.5 group-hover/arrow:-translate-y-0.5" />
+            </Link>
+          )}
         </div>
       </div>
     </motion.article>
@@ -191,12 +171,10 @@ export function Properties({
   items,
   propertyTypes = [],
   cities = [],
-  whatsappNumber = "",
 }: {
   items: Property[];
   propertyTypes?: string[];
   cities?: string[];
-  whatsappNumber?: string;
 }) {
   const [type, setType] = useState<string>("all");
   const [city, setCity] = useState<string>("all");
@@ -299,7 +277,6 @@ export function Properties({
                 key={p.id}
                 p={p}
                 onOpenGallery={setActiveGallery}
-                whatsappNumber={whatsappNumber}
               />
             ))}
           </AnimatePresence>
