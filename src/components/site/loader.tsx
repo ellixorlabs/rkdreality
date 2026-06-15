@@ -211,7 +211,7 @@ export function Loader() {
             transition={{ duration: 0.7, delay: 0.6 }}
             className="mt-7 text-[0.62rem] uppercase tracking-[0.5em] text-[#c9a85f]/80"
           >
-            Land · Trust · Value
+            Trust · Transparency · Value
           </motion.p>
 
           {/* progress line */}
