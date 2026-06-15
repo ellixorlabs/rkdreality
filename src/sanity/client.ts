@@ -6,5 +6,7 @@ export const client = createClient({
   projectId,
   dataset,
   apiVersion,
-  useCdn: true,
+  // Server-only fetches cached via Next tags + on-demand revalidation.
+  // Skip the Sanity CDN so revalidated fetches return fresh content.
+  useCdn: false,
 });

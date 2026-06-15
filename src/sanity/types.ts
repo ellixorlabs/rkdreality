@@ -19,7 +19,7 @@ export type Property = {
   priceFrom: number;
   sizeLabel: string;
   status: PropertyStatus;
-  image: string;
+  image?: string;
   highlights: string[];
   appreciation: string;
   gallery?: string[];

@@ -43,7 +43,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const description =
     p.seo?.metaDescription ||
     `${p.title} in ${p.location}, ${p.city}. ${p.priceLabel}. Verified, legally secure land with guidance from inquiry to ownership.`;
-  const ogImage = p.seo?.ogImage || p.image;
+  const ogImage = p.seo?.ogImage || p.image || p.gallery?.[0];
 
   return {
     title,
@@ -77,6 +77,7 @@ export default async function PropertyPage({ params }: Params) {
   const contact = settings?.contact;
   const whatsappNumber = contact?.whatsappNumber ?? "";
   const phone = contact?.phone;
+  const coverSrc = p.image || p.gallery?.[0];
 
   const waHref = whatsappNumber
     ? `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
@@ -118,14 +119,18 @@ export default async function PropertyPage({ params }: Params) {
         {/* Hero */}
         <section className="relative">
           <div className="relative h-[64vh] min-h-[440px] w-full overflow-hidden">
-            <Image
-              src={p.image}
-              alt={p.title}
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover"
-            />
+            {coverSrc ? (
+              <Image
+                src={coverSrc}
+                alt={p.title}
+                fill
+                priority
+                sizes="100vw"
+                className="object-cover"
+              />
+            ) : (
+              <div className="absolute inset-0 bg-forest" />
+            )}
             <div className="absolute inset-0 bg-gradient-to-t from-forest-deep via-forest-deep/45 to-forest-deep/35" />
 
             {/* Back link */}

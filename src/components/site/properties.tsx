@@ -51,16 +51,23 @@ function PropertyCard({
 }) {
   const hasGallery = Boolean(p.gallery && p.gallery.length > 0);
   const photoCount = p.gallery?.length ?? 0;
+  const coverSrc = p.image || p.gallery?.[0];
 
   const media = (
     <>
-      <Image
-        src={p.image}
-        alt={p.title}
-        fill
-        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-        className="object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105"
-      />
+      {coverSrc ? (
+        <Image
+          src={coverSrc}
+          alt={p.title}
+          fill
+          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+          className="object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105"
+        />
+      ) : (
+        <div className="absolute inset-0 grid place-items-center bg-secondary">
+          <BadgeCheck className="size-10 text-muted-foreground/40" />
+        </div>
+      )}
       <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/55 via-transparent to-transparent" />
       <span
         className={cn(
