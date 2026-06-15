@@ -45,7 +45,7 @@ export function Logo({
               dark ? "text-muted-foreground" : "text-ivory/55"
             )}
           >
-            Land · Trust · Value
+            Trust · Transparency · Value
           </span>
         </span>
       )}
