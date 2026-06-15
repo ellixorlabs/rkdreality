@@ -6,124 +6,71 @@ import { motion, AnimatePresence } from "motion/react";
 
 const MIN_DURATION = 1900;
 
-function PlotSpinner() {
+function PlotFrame() {
+  const corners: [number, number][] = [
+    [26, 26],
+    [314, 26],
+    [314, 174],
+    [26, 174],
+  ];
+
   return (
     <motion.svg
       aria-hidden
-      viewBox="0 0 360 210"
-      className="pointer-events-none absolute left-1/2 top-1/2 h-56 w-[24rem] -translate-x-1/2 -translate-y-1/2 sm:h-72 sm:w-[31rem]"
-      initial={{ opacity: 0, scale: 0.9 }}
+      viewBox="0 0 340 200"
+      className="pointer-events-none absolute left-1/2 top-1/2 h-60 w-[22rem] -translate-x-1/2 -translate-y-1/2 sm:h-72 sm:w-[27rem]"
+      initial={{ opacity: 0, scale: 0.94 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
     >
       <defs>
         <linearGradient id="plotStroke" x1="0" x2="1" y1="0" y2="1">
           <stop stopColor="#f5d88a" />
           <stop offset="1" stopColor="#b08d4c" />
         </linearGradient>
-        <filter id="plotGlow">
-          <feGaussianBlur stdDeviation="2.2" result="blur" />
-          <feMerge>
-            <feMergeNode in="blur" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
       </defs>
 
-      {/* surveyed land parcels */}
-      <motion.path
-        d="M40 146 L110 95 L177 116 L245 74 L320 122 L285 171 L195 158 L127 181 Z"
-        fill="rgba(201,168,95,0.045)"
+      {/* plot boundary drawing around the mark */}
+      <motion.rect
+        x="26"
+        y="26"
+        width="288"
+        height="148"
+        rx="6"
+        fill="none"
         stroke="url(#plotStroke)"
-        strokeWidth="1.2"
+        strokeWidth="1.3"
         strokeLinecap="round"
-        strokeLinejoin="round"
-        filter="url(#plotGlow)"
         initial={{ pathLength: 0, opacity: 0 }}
-        animate={{ pathLength: [0, 1, 1], opacity: [0, 0.9, 0.65] }}
+        animate={{ pathLength: [0, 1, 1], opacity: [0, 0.85, 0.4] }}
         transition={{
-          duration: 2.1,
+          duration: 2.4,
           ease: [0.45, 0, 0.2, 1],
           repeat: Infinity,
-          repeatDelay: 0.35,
+          repeatDelay: 0.5,
         }}
       />
-      {[
-        "M110 95 L127 181",
-        "M177 116 L195 158",
-        "M245 74 L285 171",
-        "M177 116 L127 181",
-        "M177 116 L285 171",
-      ].map((d, index) => (
-        <motion.path
-          key={d}
-          d={d}
-          fill="none"
-          stroke="rgba(247,242,232,0.22)"
-          strokeWidth="0.8"
-          strokeLinecap="round"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: [0, 1, 1], opacity: [0, 0.55, 0.2] }}
-          transition={{
-            duration: 1.6,
-            delay: 0.18 + index * 0.08,
-            ease: [0.45, 0, 0.2, 1],
-            repeat: Infinity,
-            repeatDelay: 0.7,
-          }}
-        />
-      ))}
 
-      {/* survey points */}
-      {[
-        [40, 146],
-        [110, 95],
-        [177, 116],
-        [245, 74],
-        [320, 122],
-        [285, 171],
-        [195, 158],
-        [127, 181],
-      ].map(([cx, cy], index) => (
+      {/* corner survey markers */}
+      {corners.map(([cx, cy], index) => (
         <motion.circle
           key={`${cx}-${cy}`}
           cx={cx}
           cy={cy}
-          r="3.5"
+          r="3"
           fill="#c9a85f"
           initial={{ scale: 0, opacity: 0 }}
-          animate={{
-            scale: [0, 1.25, 1],
-            opacity: [0, 1, 0.65],
-          }}
+          animate={{ scale: [0, 1.3, 1], opacity: [0, 1, 0.7] }}
           transition={{
-            duration: 1.2,
-            delay: index * 0.08,
+            duration: 1.1,
+            delay: 0.5 + index * 0.18,
             ease: [0.22, 1, 0.36, 1],
             repeat: Infinity,
-            repeatDelay: 1.1,
+            repeatDelay: 1.4,
           }}
           style={{ transformOrigin: `${cx}px ${cy}px` }}
         />
       ))}
-
-      {/* measuring sweep along the plot, not across the logo */}
-      <motion.path
-        d="M40 146 L110 95 L177 116 L245 74 L320 122"
-        fill="none"
-        stroke="#fff4c7"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeDasharray="18 180"
-        initial={{ strokeDashoffset: 220, opacity: 0 }}
-        animate={{ strokeDashoffset: -60, opacity: [0, 0.9, 0] }}
-        transition={{
-          duration: 1.9,
-          ease: "easeInOut",
-          repeat: Infinity,
-          repeatDelay: 0.25,
-        }}
-      />
     </motion.svg>
   );
 }
@@ -193,7 +140,7 @@ export function Loader() {
             transition={{ duration: 0.95, ease: [0.22, 1, 0.36, 1] }}
             className="relative grid place-items-center"
           >
-            <PlotSpinner />
+            <PlotFrame />
             <Image
               src="/rkd-logo.png"
               alt="RKD Reality"
@@ -204,18 +151,8 @@ export function Loader() {
             />
           </motion.div>
 
-          {/* tagline */}
-          <motion.p
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.6 }}
-            className="mt-7 text-[0.62rem] uppercase tracking-[0.5em] text-[#c9a85f]/80"
-          >
-            Land · Trust · Value
-          </motion.p>
-
           {/* progress line */}
-          <div className="mt-8 h-px w-40 overflow-hidden bg-white/10">
+          <div className="mt-10 h-px w-40 overflow-hidden bg-white/10">
             <motion.div
               initial={{ width: "0%" }}
               animate={{ width: "100%" }}
