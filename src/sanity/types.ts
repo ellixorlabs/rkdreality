@@ -35,6 +35,7 @@ export type ContactInfo = {
   whatsappNumber?: string;
   email?: string;
   address?: string;
+  instagramUrl?: string;
   hours?: string;
 };
 

@@ -2,6 +2,25 @@ import Link from "next/link";
 import { Logo } from "./logo";
 import { Mail, MapPin, Phone } from "lucide-react";
 
+function InstagramIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden
+    >
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="0.75" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
 const legalLinks = [
   { label: "Terms", href: "/terms" },
   { label: "Privacy Policy", href: "/privacy" },
@@ -41,6 +60,7 @@ type ContactInfo = {
   phone?: string;
   email?: string;
   address?: string;
+  instagramUrl?: string;
 };
 
 const DEFAULTS = {
@@ -84,6 +104,18 @@ export function Footer({
                 {address}
               </li>
             </ul>
+            {contact?.instagramUrl && (
+              <a
+                href={contact.instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Follow RKD Reality on Instagram"
+                className="mt-5 inline-flex items-center gap-2 rounded-sm border border-ivory/20 bg-ivory/5 px-4 py-2.5 text-sm font-medium text-ivory transition-colors hover:border-gold/50 hover:bg-gold/10 hover:text-gold-soft"
+              >
+                <InstagramIcon className="size-4" />
+                Instagram
+              </a>
+            )}
           </div>
 
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:col-span-8">
