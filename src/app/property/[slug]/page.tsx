@@ -65,6 +65,20 @@ const statusStyles: Record<string, string> = {
   "Sold Out": "bg-muted text-muted-foreground",
 };
 
+function youtubeEmbed(url: string): string | null {
+  const patterns = [
+    /(?:youtube\.com\/watch\?v=)([\w-]{11})/,
+    /(?:youtu\.be\/)([\w-]{11})/,
+    /(?:youtube\.com\/embed\/)([\w-]{11})/,
+    /(?:youtube\.com\/shorts\/)([\w-]{11})/,
+  ];
+  for (const re of patterns) {
+    const m = url.match(re);
+    if (m) return `https://www.youtube.com/embed/${m[1]}`;
+  }
+  return null;
+}
+
 export default async function PropertyPage({ params }: Params) {
   const { slug } = await params;
   const [p, settings] = await Promise.all([
@@ -266,6 +280,24 @@ export default async function PropertyPage({ params }: Params) {
                     </h2>
                     <div className="mt-5">
                       <SiteGallery images={p.gallery} name={p.title} />
+                    </div>
+                  </Reveal>
+                )}
+
+                {p.youtubeUrl && youtubeEmbed(p.youtubeUrl) && (
+                  <Reveal delay={1} className="mt-14">
+                    <h2 className="font-serif text-2xl text-foreground">
+                      Video
+                    </h2>
+                    <div className="mt-5 aspect-video overflow-hidden rounded-sm border border-border bg-secondary">
+                      <iframe
+                        src={youtubeEmbed(p.youtubeUrl)!}
+                        title={`${p.title} video`}
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                        className="h-full w-full"
+                      />
                     </div>
                   </Reveal>
                 )}

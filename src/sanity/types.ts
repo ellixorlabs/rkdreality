@@ -27,6 +27,7 @@ export type Property = {
   amenities?: string[];
   locationHighlights?: string[];
   mapUrl?: string;
+  youtubeUrl?: string;
   seo?: Seo;
 };
 
