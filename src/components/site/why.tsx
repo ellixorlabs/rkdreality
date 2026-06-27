@@ -45,8 +45,7 @@ export function Why() {
                 Why RKD Reality
               </span>
               <h2 className="mt-6 font-serif text-4xl leading-[1.08] tracking-tight text-foreground text-balance sm:text-5xl">
-                We don&rsquo;t just sell plots. We remove the fear of buying
-                them.
+                We don&rsquo;t just sell plots. We sell Future.
               </h2>
               <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground">
                 First-time investors worry about scams, hidden clauses and legal
