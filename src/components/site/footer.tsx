@@ -176,7 +176,7 @@ export function Footer({
               Designed by
             </span>
             <span className="text-gradient-flow font-serif text-sm font-semibold tracking-wide">
-              Ellixor Labs
+              ELLIXOR LABS
             </span>
           </a>
         </div>

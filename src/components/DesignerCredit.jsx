@@ -16,9 +16,9 @@ export function DesignerCredit() {
         className="designer-link relative inline-block text-ink outline-none transition-[letter-spacing,color] duration-500 ease-out hover:tracking-[0.34em] focus-visible:tracking-[0.34em] focus-visible:text-brass"
         href="https://ellixorlabs.com"
         rel="noopener noreferrer"
-        aria-label="Visit Ellixor Labs"
+        aria-label="Visit ELLIXOR LABS"
       >
-        Ellixor Labs
+        ELLIXOR LABS
       </a>
     </motion.p>
   );
