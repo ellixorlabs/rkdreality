@@ -114,7 +114,40 @@ export function Contact({
           className="grid overflow-hidden rounded-sm border border-border bg-card shadow-[0_40px_90px_-60px_rgba(27,42,31,0.5)] lg:grid-cols-12"
         >
           {/* Left — advisor panel */}
-          <div className="grain relative flex flex-col justify-between bg-forest-deep p-8 text-ivory sm:p-10 lg:col-span-5">
+          <div className="grain relative isolate flex flex-col justify-between overflow-hidden bg-forest-deep p-8 text-ivory sm:p-10 lg:col-span-5">
+            <div className="aurora -z-10" />
+            {/* looping diagonal sheen */}
+            <motion.div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 -z-10 opacity-50"
+              style={{
+                background:
+                  "linear-gradient(115deg, transparent 32%, rgba(168,145,96,0.28) 50%, transparent 68%)",
+                backgroundSize: "250% 250%",
+              }}
+              animate={{ backgroundPosition: ["0% 0%", "100% 100%"] }}
+              transition={{
+                duration: 9,
+                ease: "easeInOut",
+                repeat: Infinity,
+                repeatType: "reverse",
+              }}
+            />
+            {/* slow breathing radial glow */}
+            <motion.div
+              aria-hidden
+              className="pointer-events-none absolute -right-16 -top-16 -z-10 h-72 w-72 rounded-full blur-3xl"
+              style={{
+                background:
+                  "radial-gradient(circle, rgba(168,145,96,0.3) 0%, transparent 70%)",
+              }}
+              animate={{ opacity: [0.3, 0.6, 0.3], scale: [1, 1.12, 1] }}
+              transition={{ duration: 7, ease: "easeInOut", repeat: Infinity }}
+            />
+            {/* gradient finishes — edge fades + gold hairline */}
+            <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-32 bg-gradient-to-b from-ivory/[0.07] to-transparent" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-44 bg-gradient-to-t from-black/35 to-transparent" />
+            <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-px bg-gradient-to-r from-transparent via-gold-soft/60 to-transparent" />
             <div className="relative">
               <span className="kicker text-gold-soft">
                 <span className="h-px w-8 bg-gold-soft" />
@@ -300,7 +333,7 @@ export function Contact({
                       whileHover={{ scale: submitting ? 1 : 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       transition={{ type: "spring", stiffness: 400, damping: 22 }}
-                      className="inline-flex w-full items-center justify-center gap-2 rounded-sm bg-forest px-6 py-4 text-sm font-medium text-ivory shadow-sm transition-colors duration-300 hover:bg-forest-deep disabled:cursor-not-allowed disabled:opacity-80 sm:w-auto"
+                      className="inline-flex w-full items-center justify-center gap-2 rounded-sm bg-gold px-6 py-4 text-sm font-medium text-white shadow-sm transition-colors duration-300 hover:bg-forest hover:text-ivory disabled:cursor-not-allowed disabled:opacity-80 sm:w-auto"
                     >
                       {submitting ? (
                         <>

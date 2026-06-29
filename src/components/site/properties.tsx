@@ -95,14 +95,22 @@ function PropertyCard({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 10 }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      className="group flex flex-col overflow-hidden rounded-sm border border-border bg-card transition-all duration-500 hover:-translate-y-1.5 hover:border-gold/40 hover:shadow-[0_36px_70px_-44px_rgba(27,42,31,0.6)]"
+      className="group relative flex flex-col overflow-hidden rounded-sm border border-border bg-card transition-all duration-500 hover:-translate-y-1.5 hover:border-gold/40 hover:shadow-[0_36px_70px_-44px_rgba(27,42,31,0.6)]"
     >
+      {p.slug && (
+        <Link
+          href={`/property/${p.slug}`}
+          aria-label={`View ${p.title}`}
+          className="absolute inset-0 z-0"
+          tabIndex={-1}
+        />
+      )}
       {hasGallery ? (
         <button
           type="button"
           onClick={() => onOpenGallery(p)}
           aria-label={`Open ${p.title} photo gallery`}
-          className="relative aspect-[16/11] cursor-pointer overflow-hidden text-left outline-none focus-visible:ring-2 focus-visible:ring-gold"
+          className="relative z-10 aspect-[16/11] cursor-pointer overflow-hidden text-left outline-none focus-visible:ring-2 focus-visible:ring-gold"
         >
           {media}
         </button>
@@ -156,9 +164,12 @@ function PropertyCard({
             <Link
               href={`/property/${p.slug}`}
               aria-label={`View details for ${p.title}`}
-              className="group/arrow grid size-11 shrink-0 place-items-center rounded-full border border-forest/30 text-forest transition-all duration-300 hover:border-forest hover:bg-forest hover:text-ivory"
+              className="group/arrow relative z-10 inline-flex shrink-0 items-center gap-2 rounded-full border border-forest/30 py-1.5 pl-4 pr-1.5 text-sm font-medium text-forest transition-all duration-300 hover:border-forest hover:bg-forest hover:text-ivory"
             >
-              <ArrowUpRight className="size-5 transition-transform duration-300 group-hover/arrow:translate-x-0.5 group-hover/arrow:-translate-y-0.5" />
+              View property
+              <span className="grid size-8 place-items-center rounded-full bg-forest/10 transition-colors duration-300 group-hover/arrow:bg-ivory/15">
+                <ArrowUpRight className="size-4 transition-transform duration-300 group-hover/arrow:translate-x-0.5 group-hover/arrow:-translate-y-0.5" />
+              </span>
             </Link>
           )}
         </div>

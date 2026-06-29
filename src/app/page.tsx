@@ -1,6 +1,5 @@
 import { Navbar } from "@/components/site/navbar";
 import { Hero } from "@/components/site/hero";
-import { TrustStrip } from "@/components/site/trust-strip";
 import { Why } from "@/components/site/why";
 import { Properties } from "@/components/site/properties";
 import { Process } from "@/components/site/process";
@@ -47,7 +46,6 @@ export default async function Home() {
       <Navbar phone={contact?.phone} />
       <main className="flex-1">
         <Hero data={hero} />
-        <TrustStrip approvals={settings?.approvals} />
         <Why />
         <Properties
           items={properties}

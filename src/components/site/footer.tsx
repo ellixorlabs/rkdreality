@@ -84,7 +84,8 @@ export function Footer({
   const blurb = description || DEFAULTS.description;
 
   return (
-    <footer className="grain relative bg-forest-deep text-ivory">
+    <footer className="grain relative isolate overflow-hidden bg-forest-deep text-ivory">
+      <div className="aurora -z-10" />
       <div className="relative mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">

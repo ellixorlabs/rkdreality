@@ -41,8 +41,9 @@ export function Process() {
   return (
     <section
       id="process"
-      className="grain relative scroll-mt-20 overflow-hidden bg-forest-deep py-24 text-ivory sm:py-32"
+      className="grain relative isolate scroll-mt-20 overflow-hidden bg-forest-deep py-24 text-ivory sm:py-32"
     >
+      <div className="aurora -z-10" />
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal className="max-w-2xl">
           <span className="kicker text-gold-soft">
@@ -59,15 +60,15 @@ export function Process() {
         </Reveal>
 
         <div className="relative mt-16">
-          {/* connecting line (desktop) */}
-          <div className="absolute left-0 right-0 top-7 hidden h-px bg-ivory/15 lg:block" />
+          {/* connecting line (desktop) — spans first icon center to last icon center */}
+          <div className="absolute left-7 right-[calc(20%-2.95rem)] top-7 hidden h-px bg-ivory/15 lg:block" />
           <motion.div
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.6 }}
             transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
             style={{ transformOrigin: "left" }}
-            className="absolute left-0 right-0 top-7 hidden h-px bg-gold-soft lg:block"
+            className="absolute left-7 right-[calc(20%-2.95rem)] top-7 hidden h-px bg-gold-soft lg:block"
           />
 
           <ol className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-6">

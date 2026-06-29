@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Cormorant_Garamond, Mulish } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
-import { Loader } from "@/components/site/loader";
+import { LoaderClient } from "@/components/site/loader-client";
 
-const inter = Inter({
+const mulish = Mulish({
   variable: "--font-sans",
   subsets: ["latin"],
   display: "swap",
 });
 
-const fraunces = Fraunces({
+const cormorant = Cormorant_Garamond({
   variable: "--font-serif",
   subsets: ["latin"],
   display: "swap",
-  axes: ["opsz", "SOFT", "WONK"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -45,10 +45,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${fraunces.variable} h-full antialiased`}
+      suppressHydrationWarning
+      className={`${mulish.variable} ${cormorant.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
-        <Loader />
+        <LoaderClient />
         {children}
         <Analytics />
       </body>

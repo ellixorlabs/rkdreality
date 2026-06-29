@@ -41,17 +41,24 @@ export function Hero({ data }: { data?: HeroContent | null }) {
     <section
       ref={ref}
       id="top"
-      className="relative isolate flex h-[100svh] min-h-[600px] flex-col overflow-hidden bg-forest-deep"
+      className="grain relative isolate flex min-h-[100svh] flex-col overflow-hidden bg-forest-deep"
     >
       {data.backgroundImage && (
         <motion.div style={{ y }} className="absolute inset-0 -z-10 scale-110">
-          <Image
-            src={data.backgroundImage}
-            alt={data.headline ?? "RKD Reality"}
-            fill
-            priority
-            className="object-cover"
-          />
+          <motion.div
+            initial={{ scale: 1.12 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 14, ease: "easeOut" }}
+            className="relative h-full w-full"
+          >
+            <Image
+              src={data.backgroundImage}
+              alt={data.headline ?? "RKD Reality"}
+              fill
+              priority
+              className="object-cover"
+            />
+          </motion.div>
         </motion.div>
       )}
       <motion.div
@@ -59,8 +66,20 @@ export function Hero({ data }: { data?: HeroContent | null }) {
         className="absolute inset-0 -z-10 bg-gradient-to-br from-forest-deep via-forest-deep/70 to-forest/40"
       />
       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-forest-deep via-transparent to-forest-deep/30" />
+      {/* fluid aurora glow */}
+      <div className="aurora -z-10" />
+      {/* cinematic vignette */}
+      <div
+        className="pointer-events-none absolute inset-0 -z-10"
+        style={{
+          background:
+            "radial-gradient(120% 90% at 50% 30%, transparent 45%, rgba(0,0,0,0.55) 100%)",
+        }}
+      />
+      {/* handcrafted gold frame */}
+      <div className="pointer-events-none absolute inset-3 -z-10 hidden border border-gold-soft/20 sm:inset-5 sm:block" />
 
-      <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col justify-end px-5 pb-7 pt-24 sm:px-8 sm:pb-10 lg:pb-12">
+      <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col justify-end px-5 pb-16 pt-28 sm:px-8 sm:pb-20 lg:pb-24">
         <div className="max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -77,7 +96,7 @@ export function Hero({ data }: { data?: HeroContent | null }) {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-5 font-serif text-[1.85rem] leading-[1.1] tracking-tight text-ivory text-balance sm:mt-6 sm:text-5xl sm:leading-[1.07] lg:text-[3.5rem] lg:leading-[1.05]"
+              className="mt-5 font-serif text-[2.1rem] font-medium leading-[1.06] tracking-tight text-ivory text-balance sm:mt-6 sm:text-6xl sm:leading-[1.02] lg:text-[4.25rem] lg:leading-[1]"
             >
               {renderHeadline(data.headline, data.highlightWord)}
             </motion.h1>

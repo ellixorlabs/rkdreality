@@ -25,9 +25,10 @@ export function Founder({ data }: { data?: FounderData | null }) {
   return (
     <section
       id="founder"
-      className="relative scroll-mt-20 bg-forest py-24 text-ivory sm:py-32"
+      className="grain relative isolate scroll-mt-20 overflow-hidden bg-forest py-24 text-ivory sm:py-32"
     >
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+      <div className="aurora -z-10" />
+      <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
         <div className="grid items-center gap-14 lg:grid-cols-12 lg:gap-16">
           {/* Portrait */}
           <Reveal className="lg:col-span-5">

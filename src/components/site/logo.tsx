@@ -19,9 +19,10 @@ export function Logo({
       <Image
         src="/rkd-logo.png"
         alt="RKD Reality"
-        width={296}
-        height={120}
+        width={399}
+        height={353}
         priority={priority}
+        unoptimized
         className={cn("h-9 w-auto", imgClassName)}
       />
       {showText && (
