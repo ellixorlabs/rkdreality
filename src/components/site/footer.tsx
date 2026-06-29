@@ -68,7 +68,7 @@ const DEFAULTS = {
   email: "contact@rkdreality.com",
   address: "#08, Hormavu Kalkare Main Road, Banglore - 560043",
   description:
-    "Helping first-time investors buy verified, legally secure land across Bangalore, Mysore and Nelamangala — with transparency at every step.",
+    "Helping first-time investors buy verified, legally secure land across Bangalore, Mysore and Nelamangala, with transparency at every step.",
 };
 
 export function Footer({

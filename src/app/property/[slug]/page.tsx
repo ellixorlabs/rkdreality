@@ -37,9 +37,9 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
   const p = await getProperty(slug);
-  if (!p) return { title: "Property not found — RKD Reality" };
+  if (!p) return { title: "Property not found | RKD Reality" };
 
-  const title = p.seo?.metaTitle || `${p.title}, ${p.city} — RKD Reality`;
+  const title = p.seo?.metaTitle || `${p.title}, ${p.city} | RKD Reality`;
   const description =
     p.seo?.metaDescription ||
     `${p.title} in ${p.location}, ${p.city}. ${p.priceLabel}. Verified, legally secure land with guidance from inquiry to ownership.`;
@@ -110,7 +110,7 @@ export default async function PropertyPage({ params }: Params) {
       ? p.overview
       : [
           `${p.title} is a ${p.type.toLowerCase()} opportunity located at ${p.location}, ${p.city}. Every plot here is title-verified and chosen for long-term value, with documentation independently checked before it reaches you.`,
-          `Our team walks you through the title, encumbrance certificate, approvals and the full purchase process — so you can invest with documented, verifiable confidence rather than guesswork.`,
+          `Our team walks you through the title, encumbrance certificate, approvals and the full purchase process, so you can invest with documented, verifiable confidence rather than guesswork.`,
         ];
 
   const facts = [

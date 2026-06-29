@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { LegalShell, LegalSection } from "@/components/site/legal-shell";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — RKD Reality",
+  title: "Privacy Policy | RKD Reality",
   description:
-    "How RKD Reality collects, uses and protects your data. We never sell your information — we use it only to improve our services and guide your investment.",
+    "How RKD Reality collects, uses and protects your data. We never sell your information; we use it only to improve our services and guide your investment.",
 };
 
 export default function PrivacyPage() {
@@ -29,17 +29,17 @@ export default function PrivacyPage() {
         <p>We may collect the following, only when you choose to share it:</p>
         <ul className="list-disc space-y-2 pl-5">
           <li>
-            <span className="text-foreground">Contact details</span> — your
+            <span className="text-foreground">Contact details</span>: your
             name, phone number and email when you submit an enquiry, request a
             site visit, or message us on WhatsApp.
           </li>
           <li>
-            <span className="text-foreground">Your preferences</span> — the
+            <span className="text-foreground">Your preferences</span>: the
             property types, locations and budget range you tell us about, so we
             can recommend the right opportunities.
           </li>
           <li>
-            <span className="text-foreground">Usage information</span> — basic,
+            <span className="text-foreground">Usage information</span>: basic,
             anonymised analytics about how our website is used (such as pages
             viewed), which helps us understand what is useful and what to
             improve.
@@ -60,7 +60,7 @@ export default function PrivacyPage() {
             services.
           </li>
           <li>
-            Keep you informed about relevant opportunities — only if you have
+            Keep you informed about relevant opportunities, only if you have
             asked us to.
           </li>
         </ul>

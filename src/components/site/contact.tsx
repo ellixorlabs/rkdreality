@@ -94,13 +94,47 @@ export function Contact({
     href: string;
   }[];
 
+  const waTarget = (contact?.whatsappNumber || contact?.phone || "").replace(
+    /[^\d]/g,
+    ""
+  );
+
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const form = e.currentTarget;
+    const get = (id: string) =>
+      (form.elements.namedItem(id) as HTMLInputElement | HTMLTextAreaElement | null)
+        ?.value?.trim() ?? "";
+
+    const name = get("name");
+    const phone = get("phone");
+    const email = get("email");
+    const date = get("date");
+    const message = get("message");
+
+    const lines = [
+      "New Site Visit Request",
+      "",
+      `Name: ${name || "-"}`,
+      `Phone: ${phone || "-"}`,
+      email && `Email: ${email}`,
+      interest && `Interested in: ${interest}`,
+      city && `Preferred location: ${city}`,
+      date && `Preferred visit date: ${date}`,
+      message && `Notes: ${message}`,
+    ].filter(Boolean);
+
+    const text = encodeURIComponent(lines.join("\n"));
+    const url = waTarget
+      ? `https://wa.me/${waTarget}?text=${text}`
+      : `https://wa.me/?text=${text}`;
+
     setSubmitting(true);
     window.setTimeout(() => {
+      window.open(url, "_blank", "noopener,noreferrer");
       setSubmitting(false);
       setSubmitted(true);
-    }, 1100);
+    }, 600);
   }
 
   return (
@@ -153,7 +187,7 @@ export function Contact({
                 Book a Consultation
               </span>
               <h2 className="mt-6 font-serif text-3xl leading-[1.1] tracking-tight text-ivory text-balance sm:text-4xl">
-                Speak to a land advisor — not a salesperson.
+                Speak to a land advisor, not a salesperson.
               </h2>
               <p className="mt-5 text-sm leading-relaxed text-ivory/70">
                 Tell us what you&rsquo;re looking for. We&rsquo;ll arrange a free
@@ -218,12 +252,12 @@ export function Contact({
                     <CheckCircle2 className="size-14 text-forest" />
                   </motion.div>
                   <h3 className="mt-6 font-serif text-3xl text-foreground">
-                    Request received.
+                    Opening WhatsApp&hellip;
                   </h3>
                   <p className="mt-3 max-w-sm text-muted-foreground">
-                    Thank you. A dedicated RKD advisor will call you within one
-                    business hour to confirm your site visit and share verified
-                    documentation.
+                    Your details are ready in a WhatsApp message. Just hit send
+                    and a dedicated RKD advisor will confirm your site visit and
+                    share verified documentation.
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}

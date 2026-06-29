@@ -10,7 +10,7 @@ const pillars = [
     no: "01",
     icon: ScrollText,
     title: "The Transparency Promise",
-    body: "Every price, every dimension, every legal status — disclosed upfront and in writing. What you see is exactly what you sign.",
+    body: "Every price, every dimension, every legal status, disclosed upfront and in writing. What you see is exactly what you sign.",
   },
   {
     no: "02",
@@ -22,7 +22,7 @@ const pillars = [
     no: "03",
     icon: Handshake,
     title: "Customer-First Guidance",
-    body: "A dedicated advisor walks you through every step — from your first question to registration — with no pressure to commit.",
+    body: "A dedicated advisor walks you through every step, from your first question to registration, with no pressure to commit.",
   },
   {
     no: "04",

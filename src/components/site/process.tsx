@@ -21,7 +21,7 @@ const steps = [
     no: "03",
     icon: MapPin,
     title: "Visit",
-    body: "Walk the actual plot with an advisor — boundaries, access and surroundings.",
+    body: "Walk the actual plot with an advisor: boundaries, access and surroundings.",
   },
   {
     no: "04",
@@ -53,7 +53,7 @@ export function Process() {
             Five clear steps. No grey areas.
           </h2>
           <p className="mt-5 text-base leading-relaxed text-ivory/70">
-            Every investor follows the same transparent path — so you always
+            Every investor follows the same transparent path, so you always
             know exactly where you stand and what comes next.
           </p>
         </Reveal>

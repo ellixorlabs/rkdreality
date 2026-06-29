@@ -230,7 +230,7 @@ export function Properties({
             Curated land, vetted before it reaches you.
           </h2>
           <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-            A short, deliberately selective list of opportunities — each one
+            A short, deliberately selective list of opportunities, each one
             title-verified, RERA-registered where applicable, and chosen for
             long-term value rather than volume.
           </p>
@@ -294,7 +294,7 @@ export function Properties({
 
         {filtered.length === 0 && (
           <p className="mt-10 text-center text-muted-foreground">
-            No matching opportunities right now —{" "}
+            No matching opportunities right now.{" "}
             <a href="#contact" className="text-forest underline underline-offset-4">
               tell us what you&rsquo;re looking for
             </a>

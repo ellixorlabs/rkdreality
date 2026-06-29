@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { LegalShell, LegalSection } from "@/components/site/legal-shell";
 
 export const metadata: Metadata = {
-  title: "Terms of Use — RKD Reality",
+  title: "Terms of Use | RKD Reality",
   description:
     "The terms that govern your use of the RKD Reality website and services.",
 };
@@ -24,8 +24,8 @@ export default function TermsPage() {
 
       <LegalSection heading="Property information">
         <p>
-          We strive to keep all listing details — pricing, dimensions,
-          approvals and legal status — accurate and up to date. However,
+          We strive to keep all listing details such as pricing, dimensions,
+          approvals and legal status accurate and up to date. However,
           information may change and is provided for general guidance only. It
           does not constitute a binding offer.
         </p>
@@ -70,7 +70,7 @@ export default function TermsPage() {
           >
             Privacy Policy
           </a>
-          , which explains how we handle your data — including our commitment to
+          , which explains how we handle your data, including our commitment to
           never sell it.
         </p>
       </LegalSection>

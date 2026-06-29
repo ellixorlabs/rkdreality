@@ -18,9 +18,9 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "RKD Reality — Invest in Land with Confidence",
+  title: "RKD Reality | Invest in Land with Confidence",
   description:
-    "RKD Reality helps first-time investors buy verified, legally secure land across Bangalore, Mysore & Nelamangala — with transparent processes and guidance from inquiry to ownership.",
+    "RKD Reality helps first-time investors buy verified, legally secure land across Bangalore, Mysore & Nelamangala, with transparent processes and guidance from inquiry to ownership.",
   keywords: [
     "land investment Bangalore",
     "verified land plots",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     "real estate joint ventures",
   ],
   openGraph: {
-    title: "RKD Reality — Invest in Land with Confidence",
+    title: "RKD Reality | Invest in Land with Confidence",
     description:
       "Verified documentation, transparent processes, and guided support from inquiry to ownership.",
     type: "website",
