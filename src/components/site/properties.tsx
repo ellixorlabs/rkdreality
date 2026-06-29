@@ -95,7 +95,7 @@ function PropertyCard({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 10 }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      className="group relative flex flex-col overflow-hidden rounded-sm border border-border bg-card transition-all duration-500 hover:-translate-y-1.5 hover:border-gold/40 hover:shadow-[0_36px_70px_-44px_rgba(27,42,31,0.6)]"
+      className="group relative flex min-w-0 flex-col overflow-hidden rounded-sm border border-border bg-card transition-all duration-500 hover:-translate-y-1.5 hover:border-gold/40 hover:shadow-[0_36px_70px_-44px_rgba(27,42,31,0.6)]"
     >
       {p.slug && (
         <Link
@@ -164,10 +164,10 @@ function PropertyCard({
             <Link
               href={`/property/${p.slug}`}
               aria-label={`View details for ${p.title}`}
-              className="group/arrow relative z-10 inline-flex shrink-0 items-center gap-2 rounded-full border border-forest/30 py-1.5 pl-4 pr-1.5 text-sm font-medium text-forest transition-all duration-300 hover:border-forest hover:bg-forest hover:text-ivory"
+              className="group/arrow relative z-10 inline-flex shrink-0 items-center gap-2 rounded-full border border-forest/30 py-1.5 pl-4 pr-1.5 text-sm font-medium text-forest transition-all duration-300 hover:border-forest hover:bg-forest hover:text-ivory active:border-forest active:bg-forest active:text-ivory"
             >
               View property
-              <span className="grid size-8 place-items-center rounded-full bg-forest/10 transition-colors duration-300 group-hover/arrow:bg-ivory/15">
+              <span className="grid size-8 place-items-center rounded-full bg-forest/10 transition-colors duration-300 group-hover/arrow:bg-ivory/15 group-active/arrow:bg-ivory/15">
                 <ArrowUpRight className="size-4 transition-transform duration-300 group-hover/arrow:translate-x-0.5 group-hover/arrow:-translate-y-0.5" />
               </span>
             </Link>
@@ -220,8 +220,8 @@ export function Properties({
   }, [items, type, city, query]);
 
   return (
-    <section id="properties" className="relative scroll-mt-20 bg-sand/40 py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+    <section id="properties" className="relative scroll-mt-20 overflow-x-clip bg-sand/40 py-24 sm:py-32">
+      <div className="mx-auto min-w-0 max-w-7xl px-5 sm:px-8">
         <Reveal className="max-w-2xl">
           <span className="kicker text-gold">
             Featured Investment Opportunities
@@ -280,7 +280,7 @@ export function Properties({
         </Reveal>
 
         {/* Grid */}
-        <motion.div layout className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <motion.div layout className="mt-10 grid min-w-0 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           <AnimatePresence mode="popLayout">
             {filtered.map((p) => (
               <PropertyCard

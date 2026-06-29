@@ -213,11 +213,11 @@ export default async function PropertyPage({ params }: Params) {
         </section>
 
         {/* Body */}
-        <section className="bg-ivory py-16 sm:py-20">
+        <section className="overflow-x-clip bg-ivory py-16 sm:py-20">
           <div className="mx-auto max-w-7xl px-5 sm:px-8">
-            <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="grid min-w-0 gap-12 lg:grid-cols-12 lg:gap-16">
               {/* Main column */}
-              <div className="lg:col-span-8">
+              <div className="min-w-0 lg:col-span-8">
                 <Reveal>
                   <span className="kicker text-gold">
                     About this property
@@ -273,11 +273,11 @@ export default async function PropertyPage({ params }: Params) {
                 )}
 
                 {p.gallery && p.gallery.length > 0 && (
-                  <Reveal delay={1} className="mt-14">
+                  <Reveal delay={1} className="mt-14 min-w-0 overflow-hidden">
                     <h2 className="font-serif text-2xl text-foreground">
                       Gallery
                     </h2>
-                    <div className="mt-5">
+                    <div className="mt-5 min-w-0">
                       <SiteGallery images={p.gallery} name={p.title} />
                     </div>
                   </Reveal>
@@ -336,10 +336,10 @@ export default async function PropertyPage({ params }: Params) {
               </div>
 
               {/* Sticky enquiry card */}
-              <div className="lg:col-span-4">
+              <div className="min-w-0 lg:col-span-4">
                 <div className="lg:sticky lg:top-28">
                   <Reveal>
-                    <div className="rounded-sm border border-border bg-card p-7 shadow-[0_24px_60px_-44px_rgba(27,42,31,0.6)]">
+                    <div className="w-full min-w-0 max-w-full rounded-sm border border-border bg-card p-7 shadow-[0_24px_60px_-44px_rgba(27,42,31,0.6)]">
                       <p className="text-[0.7rem] uppercase tracking-[0.14em] text-muted-foreground">
                         Starting from
                       </p>
@@ -384,8 +384,8 @@ export default async function PropertyPage({ params }: Params) {
         </section>
 
         {/* Closing CTA */}
-        <section className="grain relative bg-forest-deep py-16 text-ivory sm:py-20">
-          <div className="mx-auto flex max-w-7xl flex-col items-start gap-5 px-5 sm:px-8 md:flex-row md:items-center md:justify-between">
+        <section className="grain relative overflow-x-clip bg-forest-deep py-16 text-ivory sm:py-20">
+          <div className="mx-auto flex w-full min-w-0 max-w-7xl flex-col items-start gap-5 px-5 sm:px-8 md:flex-row md:items-center md:justify-between">
             <div>
               <h2 className="font-serif text-3xl text-ivory sm:text-4xl">
                 Ready to walk this plot?

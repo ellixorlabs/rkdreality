@@ -41,8 +41,8 @@ export function SiteGallery({
 
   return (
     <div className="w-full min-w-0 max-w-full select-none overflow-hidden">
-      <div className="group relative flex aspect-[4/3] w-full min-w-0 max-w-full items-center justify-center overflow-hidden rounded-sm border border-border bg-forest-deep sm:aspect-auto sm:h-[68svh] sm:max-h-[68svh]">
-        <AnimatePresence initial={false} custom={direction}>
+      <div className="group relative isolate flex aspect-[4/3] w-full min-w-0 max-w-full items-center justify-center overflow-hidden rounded-sm border border-border bg-secondary sm:aspect-auto sm:h-[56svh] sm:max-h-[56svh]">
+        <AnimatePresence initial={false} custom={direction} mode="wait">
           <motion.div
             key={page}
             custom={direction}
@@ -56,9 +56,10 @@ export function SiteGallery({
             }}
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
-            dragElastic={0.16}
+            dragElastic={0.12}
+            dragMomentum={false}
             onDragEnd={onDragEnd}
-            className="absolute inset-0 max-w-full cursor-grab active:cursor-grabbing"
+            className="absolute inset-0 max-w-full touch-pan-y cursor-grab active:cursor-grabbing"
           >
             <Image
               src={images[index]}
@@ -67,7 +68,7 @@ export function SiteGallery({
               draggable={false}
               priority={index === 0}
               sizes="(min-width: 1024px) 65vw, 100vw"
-              className="pointer-events-none object-contain"
+              className="pointer-events-none object-cover sm:object-contain"
             />
           </motion.div>
         </AnimatePresence>
@@ -105,7 +106,8 @@ export function SiteGallery({
       </div>
 
       {/* thumbnails */}
-      <div className="mt-3 flex max-w-full gap-2 overflow-x-auto pb-1">
+      <div className="mt-3 w-full min-w-0 max-w-full overflow-x-auto overscroll-x-contain pb-1 [-webkit-overflow-scrolling:touch]">
+        <div className="flex w-max gap-2 pr-1">
         {images.map((src, i) => (
           <button
             key={src}
@@ -129,6 +131,7 @@ export function SiteGallery({
             />
           </button>
         ))}
+        </div>
       </div>
     </div>
   );
