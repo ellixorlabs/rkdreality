@@ -32,7 +32,9 @@ type ContactInfo = {
 };
 
 const fieldClass =
-  "h-11 w-full rounded-sm border border-input bg-background px-3 text-sm outline-none transition-all duration-200 hover:border-gold/50 focus:border-gold focus:ring-2 focus:ring-gold/15";
+  "h-11 w-full rounded-sm border border-input bg-background px-3 text-base sm:text-sm outline-none transition-all duration-200 hover:border-gold/50 focus:border-gold focus:ring-2 focus:ring-gold/15";
+
+const todayISO = () => new Date().toLocaleDateString("en-CA");
 
 const triggerClass =
   "h-11 w-full rounded-sm border-input bg-background transition-colors duration-200 hover:border-gold/50 data-[state=open]:border-gold";
@@ -113,6 +115,8 @@ export function Contact({
     const message = get("message");
 
     const lines = [
+      "Hello RKD Reality, I'd like to know more about your verified land opportunities.",
+      "",
       "New Site Visit Request",
       "",
       `Name: ${name || "-"}`,
@@ -346,7 +350,12 @@ export function Contact({
 
                   <motion.div variants={formItem} className="space-y-2">
                     <Label htmlFor="date">Preferred visit date</Label>
-                    <input id="date" type="date" className={fieldClass} />
+                    <input
+                      id="date"
+                      type="date"
+                      min={todayISO()}
+                      className={fieldClass}
+                    />
                   </motion.div>
 
                   <motion.div variants={formItem} className="space-y-2">
@@ -355,7 +364,7 @@ export function Contact({
                       id="message"
                       rows={3}
                       placeholder="Budget range, questions, or a project you saw…"
-                      className="rounded-sm border-input bg-background transition-all duration-200 hover:border-gold/50 focus-visible:border-gold focus-visible:ring-2 focus-visible:ring-gold/15"
+                      className="rounded-sm border-input bg-background text-base sm:text-sm transition-all duration-200 hover:border-gold/50 focus-visible:border-gold focus-visible:ring-2 focus-visible:ring-gold/15"
                     />
                   </motion.div>
 
