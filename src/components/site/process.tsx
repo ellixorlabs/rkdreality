@@ -47,7 +47,6 @@ export function Process() {
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal className="max-w-2xl">
           <span className="kicker text-gold-soft">
-            <span className="h-px w-8 bg-gold-soft" />
             From Inquiry to Ownership
           </span>
           <h2 className="mt-6 font-serif text-4xl leading-[1.08] tracking-tight text-ivory text-balance sm:text-5xl">

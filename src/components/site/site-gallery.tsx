@@ -41,7 +41,7 @@ export function SiteGallery({
 
   return (
     <div className="w-full min-w-0 max-w-full select-none overflow-hidden">
-      <div className="group relative flex h-[72svh] max-h-[72svh] w-full min-w-0 max-w-full items-center justify-center overflow-hidden rounded-sm border border-border bg-forest-deep">
+      <div className="group relative flex aspect-[4/3] w-full min-w-0 max-w-full items-center justify-center overflow-hidden rounded-sm border border-border bg-forest-deep sm:aspect-auto sm:h-[68svh] sm:max-h-[68svh]">
         <AnimatePresence initial={false} custom={direction}>
           <motion.div
             key={page}

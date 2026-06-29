@@ -22,7 +22,6 @@ export function Faqs({ items }: { items?: FaqItem[] }) {
       <div className="mx-auto max-w-3xl px-5 sm:px-8">
         <Reveal className="text-center">
           <span className="kicker justify-center text-gold">
-            <span className="h-px w-8 bg-gold" />
             Questions, Answered
           </span>
           <h2 className="mt-6 font-serif text-4xl leading-[1.08] tracking-tight text-foreground text-balance sm:text-5xl">

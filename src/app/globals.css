@@ -97,13 +97,17 @@
     @apply bg-background text-foreground;
     font-feature-settings: "ss01", "cv01";
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
   }
   html {
     @apply font-sans;
     scroll-behavior: smooth;
-    overflow-x: hidden;
+    width: 100%;
     max-width: 100%;
+    overflow-x: clip;
   }
   ::selection {
     background: var(--forest);

@@ -34,7 +34,6 @@ export function LegalShell({
       <main className="flex-1 bg-ivory">
         <div className="mx-auto max-w-3xl px-5 py-16 sm:px-8 sm:py-24">
           <span className="kicker text-gold">
-            <span className="h-px w-8 bg-gold" />
             Legal
           </span>
           <h1 className="mt-6 font-serif text-4xl leading-[1.08] tracking-tight text-foreground sm:text-5xl">

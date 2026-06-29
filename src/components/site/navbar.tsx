@@ -35,8 +35,8 @@ export function Navbar({ phone = "+91 97400 91582" }: { phone?: string }) {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-colors duration-500",
         scrolled
-          ? "border-b border-border/70 bg-ivory/90 backdrop-blur-md"
-          : "border-b border-transparent bg-gradient-to-b from-forest-deep/60 via-forest-deep/20 to-transparent"
+          ? "bg-ivory/90 backdrop-blur-md"
+          : "bg-gradient-to-b from-forest-deep/60 via-forest-deep/20 to-transparent"
       )}
     >
       <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8">

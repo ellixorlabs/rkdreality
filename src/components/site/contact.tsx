@@ -150,7 +150,6 @@ export function Contact({
             <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-px bg-gradient-to-r from-transparent via-gold-soft/60 to-transparent" />
             <div className="relative">
               <span className="kicker text-gold-soft">
-                <span className="h-px w-8 bg-gold-soft" />
                 Book a Consultation
               </span>
               <h2 className="mt-6 font-serif text-3xl leading-[1.1] tracking-tight text-ivory text-balance sm:text-4xl">

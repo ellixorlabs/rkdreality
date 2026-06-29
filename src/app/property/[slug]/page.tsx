@@ -220,7 +220,6 @@ export default async function PropertyPage({ params }: Params) {
               <div className="lg:col-span-8">
                 <Reveal>
                   <span className="kicker text-gold">
-                    <span className="h-px w-8 bg-gold" />
                     About this property
                   </span>
                   <div className="mt-6 space-y-5">

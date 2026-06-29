@@ -41,7 +41,6 @@ export function Why() {
           <div className="lg:col-span-5">
             <Reveal>
               <span className="kicker text-gold">
-                <span className="h-px w-8 bg-gold" />
                 Why RKD Reality
               </span>
               <h2 className="mt-6 font-serif text-4xl leading-[1.08] tracking-tight text-foreground text-balance sm:text-5xl">
@@ -55,12 +54,13 @@ export function Why() {
             </Reveal>
 
             <Reveal delay={1} className="relative mt-10">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-sm">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-sm border border-border bg-secondary/50">
                 <Image
-                  src="https://images.unsplash.com/photo-1554469384-e58fac16e23a?auto=format&fit=crop&w=1200&q=80"
-                  alt="Surveyor reviewing verified land documents on site"
+                  src="/why-doodle.svg"
+                  alt="Verified land documents being reviewed and approved"
                   fill
-                  className="object-cover"
+                  unoptimized
+                  className="object-contain p-8"
                 />
               </div>
               <motion.div

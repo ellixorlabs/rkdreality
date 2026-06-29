@@ -79,7 +79,6 @@ export function Founder({ data }: { data?: FounderData | null }) {
           <div className="lg:col-span-7 lg:pl-4">
             <Reveal>
               <span className="kicker text-gold">
-                <span className="h-px w-8 bg-gold" />
                 {kicker}
               </span>
               <h2 className="mt-6 font-serif text-4xl leading-[1.08] tracking-tight text-ivory text-balance sm:text-5xl">

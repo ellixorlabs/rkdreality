@@ -76,9 +76,6 @@ export function Hero({ data }: { data?: HeroContent | null }) {
             "radial-gradient(120% 90% at 50% 30%, transparent 45%, rgba(0,0,0,0.55) 100%)",
         }}
       />
-      {/* handcrafted gold frame */}
-      <div className="pointer-events-none absolute inset-3 -z-10 hidden border border-gold-soft/20 sm:inset-5 sm:block" />
-
       <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col justify-end px-5 pb-16 pt-28 sm:px-8 sm:pb-20 lg:pb-24">
         <div className="max-w-3xl">
           <motion.div
@@ -87,7 +84,6 @@ export function Hero({ data }: { data?: HeroContent | null }) {
             transition={{ duration: 0.7, delay: 0.15 }}
             className="kicker text-gold-soft"
           >
-            <span className="h-px w-8 bg-gold-soft" />
             {data.kicker}
           </motion.div>
 

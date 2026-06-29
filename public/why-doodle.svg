@@ -1,0 +1,62 @@
+<svg viewBox="0 0 480 360" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Verified land documents doodle">
+  <defs>
+    <style>
+      .ink { stroke:#1d1d1f; stroke-width:3.4; stroke-linecap:round; stroke-linejoin:round; fill:none; }
+      .ink-thin { stroke:#1d1d1f; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; fill:none; }
+      .blue-fill { fill:#3b6fe0; }
+      .blue-soft { fill:#dbe6ff; }
+      .gold-fill { fill:#cda75c; }
+      .white-fill { fill:#ffffff; }
+    </style>
+  </defs>
+
+  <!-- soft ground shadow -->
+  <ellipse cx="240" cy="322" rx="150" ry="14" fill="#1d1d1f" opacity="0.06" />
+
+  <!-- back document (verified) -->
+  <g transform="rotate(-7 180 150)">
+    <rect x="92" y="70" width="150" height="190" rx="10" class="white-fill" />
+    <rect x="92" y="70" width="150" height="190" rx="10" class="ink" />
+    <line x1="116" y1="104" x2="218" y2="104" class="ink-thin" />
+    <line x1="116" y1="128" x2="218" y2="128" class="ink-thin" />
+    <line x1="116" y1="152" x2="190" y2="152" class="ink-thin" />
+    <!-- verified seal -->
+    <circle cx="190" cy="210" r="30" class="blue-soft" />
+    <circle cx="190" cy="210" r="30" class="ink" />
+    <path d="M176 210 l10 11 l20 -24" class="ink" />
+  </g>
+
+  <!-- front document (signed contract) -->
+  <g transform="rotate(6 300 170)">
+    <rect x="236" y="86" width="156" height="196" rx="10" class="blue-soft" />
+    <rect x="236" y="86" width="156" height="196" rx="10" class="ink" />
+    <line x1="262" y1="120" x2="366" y2="120" class="ink-thin" />
+    <line x1="262" y1="144" x2="366" y2="144" class="ink-thin" />
+    <line x1="262" y1="168" x2="366" y2="168" class="ink-thin" />
+    <line x1="262" y1="192" x2="330" y2="192" class="ink-thin" />
+    <!-- signature swoosh -->
+    <path d="M262 236 q14 -20 26 -2 q10 16 22 -4 q8 -14 22 2" class="ink" stroke="#3b6fe0" />
+  </g>
+
+  <!-- magnifier (transparency / inspection) -->
+  <g transform="rotate(0 150 250)">
+    <circle cx="150" cy="248" r="40" class="white-fill" />
+    <circle cx="150" cy="248" r="40" class="ink" />
+    <circle cx="150" cy="248" r="40" stroke="#3b6fe0" stroke-width="3.4" fill="none" />
+    <line x1="181" y1="279" x2="214" y2="312" class="ink" />
+    <line x1="181" y1="279" x2="214" y2="312" stroke="#3b6fe0" stroke-width="6.4" />
+    <path d="M134 250 l9 9 l18 -22" class="ink" stroke="#3b6fe0" />
+  </g>
+
+  <!-- location pin (land) -->
+  <g>
+    <path d="M360 56 c0 22 -22 36 -22 36 c0 0 -22 -14 -22 -36 a22 22 0 1 1 44 0 z" class="gold-fill" />
+    <path d="M360 56 c0 22 -22 36 -22 36 c0 0 -22 -14 -22 -36 a22 22 0 1 1 44 0 z" class="ink" />
+    <circle cx="338" cy="54" r="8" class="white-fill" />
+    <circle cx="338" cy="54" r="8" class="ink" />
+  </g>
+
+  <!-- small sparkles -->
+  <path d="M70 120 l0 16 M62 128 l16 0" class="ink-thin" stroke="#3b6fe0" />
+  <path d="M410 220 l0 14 M403 227 l14 0" class="ink-thin" stroke="#cda75c" />
+</svg>
