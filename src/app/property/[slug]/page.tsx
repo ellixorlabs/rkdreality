@@ -25,7 +25,7 @@ import {
   getSiteSettings,
 } from "@/sanity/data";
 
-export const revalidate = 0;
+export const revalidate = 300;
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -79,6 +79,14 @@ function youtubeEmbed(url: string): string | null {
   return null;
 }
 
+function getYoutubeEmbeds(urls?: string[]): string[] {
+  if (!urls?.length) return [];
+  const embeds = urls
+    .map((u) => youtubeEmbed(u))
+    .filter((u): u is string => Boolean(u));
+  return Array.from(new Set(embeds));
+}
+
 export default async function PropertyPage({ params }: Params) {
   const { slug } = await params;
   const [p, settings] = await Promise.all([
@@ -112,6 +120,7 @@ export default async function PropertyPage({ params }: Params) {
           `${p.title} is a ${p.type.toLowerCase()} opportunity located at ${p.location}, ${p.city}. Every plot here is title-verified and chosen for long-term value, with documentation independently checked before it reaches you.`,
           `Our team walks you through the title, encumbrance certificate, approvals and the full purchase process, so you can invest with documented, verifiable confidence rather than guesswork.`,
         ];
+  const videoEmbeds = getYoutubeEmbeds(p.youtubeUrls);
 
   const facts = [
     { icon: IndianRupee, label: "Starting Price", value: p.priceLabel },
@@ -283,20 +292,27 @@ export default async function PropertyPage({ params }: Params) {
                   </Reveal>
                 )}
 
-                {p.youtubeUrl && youtubeEmbed(p.youtubeUrl) && (
+                {videoEmbeds.length > 0 && (
                   <Reveal delay={1} className="mt-14">
                     <h2 className="font-serif text-2xl text-foreground">
-                      Video
+                      Videos
                     </h2>
-                    <div className="mt-5 aspect-video overflow-hidden rounded-sm border border-border bg-secondary">
-                      <iframe
-                        src={youtubeEmbed(p.youtubeUrl)!}
-                        title={`${p.title} video`}
-                        loading="lazy"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowFullScreen
-                        className="h-full w-full"
-                      />
+                    <div className="mt-5 grid gap-4">
+                      {videoEmbeds.map((embed, i) => (
+                        <div
+                          key={`${embed}-${i}`}
+                          className="aspect-video overflow-hidden rounded-sm border border-border bg-secondary"
+                        >
+                          <iframe
+                            src={embed}
+                            title={`${p.title} video ${i + 1}`}
+                            loading="lazy"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowFullScreen
+                            className="h-full w-full"
+                          />
+                        </div>
+                      ))}
                     </div>
                   </Reveal>
                 )}

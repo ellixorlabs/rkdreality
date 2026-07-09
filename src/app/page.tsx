@@ -18,7 +18,7 @@ import {
   getFaqs,
 } from "@/sanity/data";
 
-export const revalidate = 0;
+export const revalidate = 300;
 
 export default async function Home() {
   const [properties, settings, hero, founder, testimonials, faqs] =

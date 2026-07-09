@@ -215,3 +215,11 @@
     animation: none;
   }
 }
+
+@media (max-width: 768px) {
+  .aurora,
+  .aurora-light,
+  .text-gradient-flow {
+    animation: none;
+  }
+}

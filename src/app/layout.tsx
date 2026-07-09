@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, Mulish } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
-import { LoaderClient } from "@/components/site/loader-client";
+import { Loader } from "@/components/site/loader";
 
 const mulish = Mulish({
   variable: "--font-sans",
@@ -49,7 +49,7 @@ export default function RootLayout({
       className={`${mulish.variable} ${cormorant.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
-        <LoaderClient />
+        <Loader />
         {children}
         <Analytics />
       </body>

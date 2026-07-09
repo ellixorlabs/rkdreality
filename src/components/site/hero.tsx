@@ -56,6 +56,7 @@ export function Hero({ data }: { data?: HeroContent | null }) {
               alt={data.headline ?? "RKD Reality"}
               fill
               priority
+              sizes="100vw"
               className="object-cover"
             />
           </motion.div>

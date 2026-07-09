@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 
-const MIN_DURATION = 2400;
+const MIN_DURATION = 900;
 
 function PlotSpinner() {
   return (
@@ -130,6 +130,7 @@ function PlotSpinner() {
 
 export function Loader() {
   const [loading, setLoading] = useState(true);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     const start = Date.now();
@@ -178,7 +179,7 @@ export function Loader() {
             aria-hidden
             initial={{ opacity: 0, scale: 0.85 }}
             animate={{ opacity: [0, 0.5, 0.35], scale: 1 }}
-            transition={{ duration: 2.4, ease: "easeOut" }}
+            transition={{ duration: reduceMotion ? 0.3 : 1.6, ease: "easeOut" }}
             className="pointer-events-none absolute h-[30rem] w-[30rem] rounded-full blur-3xl"
             style={{
               background:
@@ -190,7 +191,7 @@ export function Loader() {
             initial={{ opacity: 0, scale: 0.94, y: 8 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, y: -16, scale: 0.98 }}
-            transition={{ duration: 1.3, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: reduceMotion ? 0.3 : 0.9, ease: [0.22, 1, 0.36, 1] }}
             className="relative grid place-items-center"
           >
             <PlotSpinner />
@@ -209,7 +210,7 @@ export function Loader() {
           <motion.p
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: reduceMotion ? 0.2 : 0.6, delay: reduceMotion ? 0 : 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="mt-9 text-[0.62rem] uppercase tracking-[0.5em] text-[#8a734a]"
           >
             Trust · Transparency · Value
@@ -220,7 +221,7 @@ export function Loader() {
             <motion.div
               initial={{ width: "0%" }}
               animate={{ width: "100%" }}
-              transition={{ duration: 2.2, ease: [0.4, 0, 0.2, 1] }}
+              transition={{ duration: reduceMotion ? 0.4 : 1.1, ease: [0.4, 0, 0.2, 1] }}
               className="h-full bg-gradient-to-r from-[#a89160] to-[#8a734a]"
             />
           </div>

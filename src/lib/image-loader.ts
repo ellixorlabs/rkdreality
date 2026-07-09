@@ -18,7 +18,7 @@ export default function wsrvLoader({ src, width, quality }: LoaderArgs): string 
   const params = new URLSearchParams({
     url: src,
     w: String(width),
-    q: String(quality ?? 72),
+    q: String(quality ?? 65),
     output: "webp",
     // never upscale beyond the source resolution
     we: "",

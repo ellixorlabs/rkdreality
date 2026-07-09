@@ -59,6 +59,7 @@ export function Why() {
                   src="/why-doodle.svg"
                   alt="Verified land documents being reviewed and approved"
                   fill
+                  sizes="(min-width: 1024px) 35vw, 100vw"
                   unoptimized
                   className="object-contain p-8"
                 />

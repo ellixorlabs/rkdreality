@@ -32,6 +32,7 @@ type RawProperty = {
   locationHighlights?: string[];
   mapUrl?: string;
   youtubeUrl?: string;
+  youtubeUrls?: string[];
   seo?: Seo;
 };
 
@@ -58,6 +59,11 @@ function mapProperty(d: RawProperty): Property {
       : undefined,
     mapUrl: d.mapUrl || undefined,
     youtubeUrl: d.youtubeUrl || undefined,
+    youtubeUrls: d.youtubeUrls?.filter(Boolean)?.length
+      ? d.youtubeUrls.filter(Boolean)
+      : d.youtubeUrl
+        ? [d.youtubeUrl]
+        : undefined,
     seo: d.seo,
   };
 }
@@ -80,7 +86,7 @@ export async function getProperty(slug: string): Promise<Property | null> {
     `*[_type == "property" && slug.current == $slug][0]{
       _id, "slug": slug.current, title, location, city, propertyType, priceLabel,
       priceFrom, sizeLabel, status, image, gallery, highlights, appreciation,
-      overview, amenities, locationHighlights, mapUrl, youtubeUrl,
+      overview, amenities, locationHighlights, mapUrl, youtubeUrl, youtubeUrls,
       seo{metaTitle, metaDescription, keywords, ogImage, noIndex}
     }`,
     { slug },

@@ -28,6 +28,7 @@ export type Property = {
   locationHighlights?: string[];
   mapUrl?: string;
   youtubeUrl?: string;
+  youtubeUrls?: string[];
   seo?: Seo;
 };
 
