@@ -431,7 +431,11 @@ export default async function PropertyPage({ params }: Params) {
         </section>
       </main>
 
-      <Footer contact={contact} description={settings?.description} />
+      <Footer
+        contact={contact}
+        description={settings?.description}
+        columns={settings?.footerColumns}
+      />
       <WhatsAppFloat whatsappNumber={whatsappNumber || undefined} />
     </>
   );

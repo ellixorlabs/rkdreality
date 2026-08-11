@@ -51,6 +51,16 @@ export type ContactInfo = {
   hours?: string;
 };
 
+export type FooterLink = {
+  label: string;
+  href: string;
+};
+
+export type FooterColumn = {
+  title: string;
+  links: FooterLink[];
+};
+
 export type SiteSettings = {
   title?: string;
   tagline?: string;
@@ -58,6 +68,7 @@ export type SiteSettings = {
   logo?: string;
   approvals?: string[];
   contact?: ContactInfo;
+  footerColumns?: FooterColumn[];
 };
 
 export type Cta = {

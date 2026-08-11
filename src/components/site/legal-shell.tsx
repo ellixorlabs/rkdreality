@@ -2,8 +2,9 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Logo } from "./logo";
 import { Footer } from "./footer";
+import { getSiteSettings } from "@/sanity/data";
 
-export function LegalShell({
+export async function LegalShell({
   title,
   updated,
   intro,
@@ -14,6 +15,9 @@ export function LegalShell({
   intro: string;
   children: React.ReactNode;
 }) {
+  const settings = await getSiteSettings();
+  const contact = settings?.contact;
+
   return (
     <>
       <header className="border-b border-ivory/10 bg-forest-deep">
@@ -61,7 +65,11 @@ export function LegalShell({
         </div>
       </main>
 
-      <Footer />
+      <Footer
+        contact={contact}
+        description={settings?.description}
+        columns={settings?.footerColumns}
+      />
     </>
   );
 }

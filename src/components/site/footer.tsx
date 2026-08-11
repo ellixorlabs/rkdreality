@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Logo } from "./logo";
 import { Mail, MapPin, Phone } from "lucide-react";
+import type { FooterColumn } from "@/sanity/types";
 
 function InstagramIcon({ className }: { className?: string }) {
   return (
@@ -26,35 +27,56 @@ const legalLinks = [
   { label: "Privacy Policy", href: "/privacy" },
 ];
 
-const columns = [
+const DEFAULT_COLUMNS: FooterColumn[] = [
   {
     title: "Explore",
     links: [
-      { label: "Opportunities", href: "#properties" },
-      { label: "Why RKD Reality", href: "#why" },
-      { label: "Buying Process", href: "#process" },
-      { label: "Success Stories", href: "#testimonials" },
+      { label: "Opportunities", href: "/#properties" },
+      { label: "Why RKD Reality", href: "/#why" },
+      { label: "Buying Process", href: "/#process" },
+      { label: "Success Stories", href: "/#testimonials" },
     ],
   },
   {
     title: "Property Types",
     links: [
-      { label: "Residential Plots", href: "#properties" },
-      { label: "Commercial Land", href: "#properties" },
-      { label: "Joint Ventures", href: "#properties" },
-      { label: "Farm Land", href: "#properties" },
+      { label: "Residential Plots", href: "/#properties" },
+      { label: "Commercial Land", href: "/#properties" },
+      { label: "Joint Ventures", href: "/#properties" },
+      { label: "Farm Land", href: "/#properties" },
     ],
   },
   {
     title: "Locations",
     links: [
-      { label: "Bangalore", href: "#properties" },
-      { label: "Mysore", href: "#properties" },
-      { label: "Nelamangala", href: "#properties" },
-      { label: "Devanahalli", href: "#properties" },
+      { label: "Bangalore", href: "/#properties" },
+      { label: "Mysore", href: "/#properties" },
+      { label: "Nelamangala", href: "/#properties" },
+      { label: "Devanahalli", href: "/#properties" },
     ],
   },
 ];
+
+function FooterNavLink({ label, href }: { label: string; href: string }) {
+  const className = "text-sm text-ivory/70 transition-colors hover:text-ivory";
+  if (/^https?:\/\//i.test(href)) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={className}
+      >
+        {label}
+      </a>
+    );
+  }
+  return (
+    <Link href={href} className={className}>
+      {label}
+    </Link>
+  );
+}
 
 type ContactInfo = {
   phone?: string;
@@ -74,14 +96,25 @@ const DEFAULTS = {
 export function Footer({
   contact,
   description,
+  columns,
 }: {
   contact?: ContactInfo;
   description?: string;
+  columns?: FooterColumn[];
 }) {
   const phone = contact?.phone || DEFAULTS.phone;
   const email = contact?.email || DEFAULTS.email;
   const address = contact?.address || DEFAULTS.address;
   const blurb = description || DEFAULTS.description;
+  const linkColumns = (() => {
+    const incoming = Array.isArray(columns) ? columns : [];
+    const cleaned = incoming.flatMap((col) => {
+      if (!col?.title) return [];
+      const links = (col.links ?? []).filter((l) => l?.label && l?.href);
+      return links.length ? [{ title: col.title, links }] : [];
+    });
+    return cleaned.length ? cleaned : DEFAULT_COLUMNS;
+  })();
 
   return (
     <footer className="grain relative isolate overflow-hidden bg-forest-deep text-ivory">
@@ -120,22 +153,19 @@ export function Footer({
           </div>
 
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:col-span-8">
-            {columns.map((col) => (
+            {linkColumns.map((col) => (
               <div key={col.title}>
                 <h4 className="text-[0.72rem] font-medium uppercase tracking-[0.2em] text-gold-soft">
                   {col.title}
                 </h4>
                 <ul className="mt-5 space-y-3">
-                  {col.links.map((l) => (
-                    <li key={l.label}>
-                      <a
-                        href={l.href}
-                        className="text-sm text-ivory/70 transition-colors hover:text-ivory"
-                      >
-                        {l.label}
-                      </a>
-                    </li>
-                  ))}
+                  {col.links
+                    .filter((l) => l.label && l.href)
+                    .map((l) => (
+                      <li key={`${col.title}-${l.label}-${l.href}`}>
+                        <FooterNavLink label={l.label} href={l.href} />
+                      </li>
+                    ))}
                 </ul>
               </div>
             ))}

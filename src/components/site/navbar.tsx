@@ -39,18 +39,18 @@ export function Navbar({ phone = "+91 97400 91582" }: { phone?: string }) {
           : "bg-gradient-to-b from-forest-deep/60 via-forest-deep/20 to-transparent"
       )}
     >
-      <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8">
-        <a href="/" aria-label="RKD Reality home" className="shrink-0">
+      <nav className="mx-auto grid h-20 max-w-7xl grid-cols-[auto_1fr_auto] items-center gap-3 px-5 sm:gap-4 sm:px-8 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:gap-6">
+        <a href="/" aria-label="RKD Reality home" className="min-w-0 justify-self-start">
           <Logo dark={scrolled} priority />
         </a>
 
-        <ul className="hidden items-center gap-9 lg:flex">
+        <ul className="hidden min-w-0 items-center justify-center gap-x-[clamp(0.85rem,1.6vw,2rem)] lg:flex">
           {links.map((l) => (
-            <li key={l.href}>
+            <li key={l.href} className="shrink-0">
               <a
                 href={l.href}
                 className={cn(
-                  "group relative text-sm tracking-wide transition-colors",
+                  "group relative whitespace-nowrap text-[0.8125rem] tracking-wide transition-colors xl:text-sm",
                   scrolled ? "text-foreground/75 hover:text-foreground" : "text-ivory/80 hover:text-ivory"
                 )}
               >
@@ -61,20 +61,20 @@ export function Navbar({ phone = "+91 97400 91582" }: { phone?: string }) {
           ))}
         </ul>
 
-        <div className="flex items-center gap-3">
+        <div className="flex min-w-0 items-center justify-end gap-2 sm:gap-3">
           <a
             href={telHref}
             className={cn(
-              "hidden items-center gap-2 text-sm md:flex",
+              "hidden items-center gap-2 whitespace-nowrap text-sm xl:flex",
               scrolled ? "text-foreground/70" : "text-ivory/80"
             )}
           >
-            <Phone className="size-3.5" />
+            <Phone className="size-3.5 shrink-0" />
             {phone}
           </a>
           <a
             href="/#contact"
-            className="hidden items-center justify-center rounded-sm bg-gold px-5 py-2.5 text-sm font-medium text-forest-deep transition-colors hover:bg-gold-soft sm:inline-flex"
+            className="hidden items-center justify-center whitespace-nowrap rounded-sm bg-gold px-4 py-2.5 text-sm font-medium text-forest-deep transition-colors hover:bg-gold-soft sm:inline-flex xl:px-5"
           >
             Book a Site Visit
           </a>

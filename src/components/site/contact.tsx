@@ -142,7 +142,7 @@ export function Contact({
   }
 
   return (
-    <section id="contact" className="relative scroll-mt-20 bg-sand/40 py-24 sm:py-32">
+    <section id="contact" className="relative scroll-mt-20 bg-sand/40 pt-8 pb-24 sm:pt-10 sm:pb-32">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

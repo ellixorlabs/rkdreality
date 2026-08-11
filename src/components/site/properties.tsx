@@ -15,13 +15,6 @@ import {
   X,
 } from "lucide-react";
 import { SiteGallery } from "@/components/site/site-gallery";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Reveal } from "@/components/motion/reveal";
 import { cn } from "@/lib/utils";
 import type { Property } from "@/sanity/types";
@@ -249,32 +242,32 @@ export function Properties({
               />
             </div>
             <div className="flex gap-3">
-              <Select value={type} onValueChange={(v) => setType(v ?? "all")}>
-                <SelectTrigger className="h-11 w-full min-w-[10rem] rounded-sm border-input bg-background sm:w-44">
-                  <SelectValue placeholder="Property type" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Types</SelectItem>
-                  {propertyTypes.map((t) => (
-                    <SelectItem key={t} value={t}>
-                      {t}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <Select value={city} onValueChange={(v) => setCity(v ?? "all")}>
-                <SelectTrigger className="h-11 w-full min-w-[9rem] rounded-sm border-input bg-background sm:w-40">
-                  <SelectValue placeholder="Location" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Cities</SelectItem>
-                  {cities.map((c) => (
-                    <SelectItem key={c} value={c}>
-                      {c}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <select
+                aria-label="Property type"
+                value={type}
+                onChange={(e) => setType(e.target.value)}
+                className="h-11 w-full min-w-[10rem] rounded-sm border border-input bg-background px-3 text-sm outline-none transition-colors focus:border-gold sm:w-44"
+              >
+                <option value="all">All Types</option>
+                {propertyTypes.map((t) => (
+                  <option key={t} value={t}>
+                    {t}
+                  </option>
+                ))}
+              </select>
+              <select
+                aria-label="Location"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                className="h-11 w-full min-w-[9rem] rounded-sm border border-input bg-background px-3 text-sm outline-none transition-colors focus:border-gold sm:w-40"
+              >
+                <option value="all">All Cities</option>
+                {cities.map((c) => (
+                  <option key={c} value={c}>
+                    {c}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
         </Reveal>

@@ -62,7 +62,11 @@ export default async function Home() {
           cities={cities}
         />
       </main>
-      <Footer contact={contact} description={settings?.description} />
+      <Footer
+        contact={contact}
+        description={settings?.description}
+        columns={settings?.footerColumns}
+      />
       <WhatsAppFloat whatsappNumber={contact?.whatsappNumber} />
     </>
   );

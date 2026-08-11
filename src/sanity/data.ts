@@ -126,7 +126,8 @@ export async function getPropertySlugs(): Promise<string[]> {
 export async function getSiteSettings(): Promise<SiteSettings | null> {
   return client.fetch<SiteSettings | null>(
     `*[_type == "siteSettings" && _id == "siteSettings"][0]{
-      title, tagline, description, logo, approvals, contact
+      title, tagline, description, logo, approvals, contact,
+      footerColumns[]{title, links[]{label, href}}
     }`,
     {},
     { next: { tags: ["siteSettings"] } }
