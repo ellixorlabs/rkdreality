@@ -1,4 +1,4 @@
-import type {SVGProps} from "react";
+import type {ReactElement, SVGProps} from "react";
 
 type IconProps = SVGProps<SVGSVGElement>;
 
@@ -108,7 +108,7 @@ export function IconWaterTap(props: IconProps) {
 
 export const CUSTOM_FEATURE_ICONS: Record<
   string,
-  (props: IconProps) => JSX.Element
+  (props: IconProps) => ReactElement
 > = {
   "natural-pool": IconNaturalPool,
   pool: IconPool,
