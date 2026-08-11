@@ -69,6 +69,12 @@ export type SiteSettings = {
   approvals?: string[];
   contact?: ContactInfo;
   footerColumns?: FooterColumn[];
+  defaultSeo?: Seo;
+};
+
+export type SitemapEntry = {
+  slug: string;
+  updatedAt?: string;
 };
 
 export type Cta = {

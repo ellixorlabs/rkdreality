@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Logo } from "./logo";
 import { Mail, MapPin, Phone } from "lucide-react";
 import type { FooterColumn } from "@/sanity/types";
+import { ELLIXOR_LABS } from "@/lib/site";
 
 function InstagramIcon({ className }: { className?: string }) {
   return (
@@ -197,16 +198,19 @@ export function Footer({
           </div>
 
           <a
-            href="https://ellixorlabs.com"
+            href={ELLIXOR_LABS.url}
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
+            title="Website designed and built by Ellixor Labs"
+            aria-label="Designed by Ellixor Labs"
+            itemProp="creator"
             className="group inline-flex items-center gap-1.5"
           >
             <span className="text-ivory/45 transition-colors group-hover:text-ivory/70">
               Designed by
             </span>
             <span className="text-gradient-flow font-serif text-sm font-semibold tracking-wide">
-              ELLIXOR LABS
+              {ELLIXOR_LABS.name}
             </span>
           </a>
         </div>

@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { LegalShell, LegalSection } from "@/components/site/legal-shell";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | RKD Reality",
+  title: "Privacy Policy",
   description:
     "How RKD Reality collects, uses and protects your data. We never sell your information; we use it only to improve our services and guide your investment.",
+  alternates: { canonical: "/privacy" },
 };
 
 export default function PrivacyPage() {

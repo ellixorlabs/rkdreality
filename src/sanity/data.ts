@@ -7,6 +7,7 @@ import type {
   FeatureItem,
   Seo,
   SiteSettings,
+  SitemapEntry,
   HeroContent,
   FounderData,
   TestimonialItem,
@@ -114,6 +115,18 @@ export async function getProperty(slug: string): Promise<Property | null> {
   return d ? mapProperty(d) : null;
 }
 
+export async function getSitemapEntries(): Promise<SitemapEntry[]> {
+  const docs = await client.fetch<SitemapEntry[]>(
+    `*[_type == "property" && defined(slug.current) && seo.noIndex != true]{
+      "slug": slug.current,
+      "updatedAt": _updatedAt
+    }`,
+    {},
+    { next: { tags: ["property"] } }
+  );
+  return docs ?? [];
+}
+
 export async function getPropertySlugs(): Promise<string[]> {
   const slugs = await client.fetch<string[]>(
     `*[_type == "property" && defined(slug.current)].slug.current`,
@@ -127,7 +140,8 @@ export async function getSiteSettings(): Promise<SiteSettings | null> {
   return client.fetch<SiteSettings | null>(
     `*[_type == "siteSettings" && _id == "siteSettings"][0]{
       title, tagline, description, logo, approvals, contact,
-      footerColumns[]{title, links[]{label, href}}
+      footerColumns[]{title, links[]{label, href}},
+      defaultSeo{metaTitle, metaDescription, keywords, ogImage, noIndex}
     }`,
     {},
     { next: { tags: ["siteSettings"] } }

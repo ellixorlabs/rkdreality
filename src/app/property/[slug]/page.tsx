@@ -33,6 +33,8 @@ import {
   getPropertySlugs,
   getSiteSettings,
 } from "@/sanity/data";
+import { JsonLd } from "@/components/site/json-ld";
+import { absoluteUrl, SITE_NAME } from "@/lib/site";
 
 export const revalidate = 300;
 
@@ -46,7 +48,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
   const p = await getProperty(slug);
-  if (!p) return { title: "Property not found | RKD Reality" };
+  if (!p) return { title: { absolute: "Property not found | RKD Reality" } };
 
   const title = p.seo?.metaTitle || `${p.title}, ${p.city} | RKD Reality`;
   const description =
@@ -55,15 +57,25 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const ogImage = p.seo?.ogImage || p.image || p.gallery?.[0];
 
   return {
-    title,
+    title: { absolute: title },
     description,
     keywords: p.seo?.keywords,
-    robots: p.seo?.noIndex ? { index: false, follow: false } : undefined,
+    robots: p.seo?.noIndex
+      ? { index: false, follow: false }
+      : { index: true, follow: true },
+    alternates: { canonical: `/property/${p.slug}` },
     openGraph: {
       title,
       description,
       type: "website",
+      url: `/property/${p.slug}`,
       images: ogImage ? [{ url: ogImage }] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ogImage ? [ogImage] : undefined,
     },
   };
 }
@@ -160,6 +172,34 @@ export default async function PropertyPage({ params }: Params) {
 
   return (
     <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "RealEstateListing",
+          name: p.title,
+          url: absoluteUrl(`/property/${p.slug}`),
+          description:
+            p.seo?.metaDescription ||
+            `${p.title} in ${p.location}, ${p.city}. ${p.priceLabel}.`,
+          image: p.image || p.gallery?.[0],
+          brand: SITE_NAME,
+          offers: {
+            "@type": "Offer",
+            price: p.priceFrom || undefined,
+            priceCurrency: "INR",
+            availability:
+              p.status === "Sold Out"
+                ? "https://schema.org/SoldOut"
+                : "https://schema.org/InStock",
+          },
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: p.city,
+            streetAddress: p.location,
+            addressCountry: "IN",
+          },
+        }}
+      />
       <Navbar phone={phone} />
 
       <main className="flex-1">

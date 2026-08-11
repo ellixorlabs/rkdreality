@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { LegalShell, LegalSection } from "@/components/site/legal-shell";
 
 export const metadata: Metadata = {
-  title: "Terms of Use | RKD Reality",
+  title: "Terms of Use",
   description:
     "The terms that govern your use of the RKD Reality website and services.",
+  alternates: { canonical: "/terms" },
 };
 
 export default function TermsPage() {

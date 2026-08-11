@@ -17,8 +17,37 @@ import {
   getTestimonials,
   getFaqs,
 } from "@/sanity/data";
+import type { Metadata } from "next";
+import { SITE_NAME } from "@/lib/site";
 
 export const revalidate = 300;
+
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getSiteSettings();
+  const title =
+    settings?.defaultSeo?.metaTitle ||
+    `${SITE_NAME} | Invest in Land with Confidence`;
+  const description =
+    settings?.defaultSeo?.metaDescription || settings?.description;
+
+  return {
+    title: { absolute: title },
+    description,
+    keywords: settings?.defaultSeo?.keywords,
+    robots: settings?.defaultSeo?.noIndex
+      ? { index: false, follow: false }
+      : undefined,
+    alternates: { canonical: "/" },
+    openGraph: {
+      title,
+      description,
+      url: "/",
+      images: settings?.defaultSeo?.ogImage
+        ? [{ url: settings.defaultSeo.ogImage }]
+        : undefined,
+    },
+  };
+}
 
 export default async function Home() {
   const [properties, settings, hero, founder, testimonials, faqs] =
