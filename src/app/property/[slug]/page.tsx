@@ -35,6 +35,7 @@ import {
 } from "@/sanity/data";
 import { JsonLd } from "@/components/site/json-ld";
 import { absoluteUrl, SITE_NAME } from "@/lib/site";
+import { getYoutubeEmbeds, youtubeId, youtubeThumbnail } from "@/lib/youtube";
 
 export const revalidate = 300;
 
@@ -85,28 +86,6 @@ const statusStyles: Record<string, string> = {
   "Few Plots Left": "bg-gold text-forest-deep",
   "Sold Out": "bg-muted text-muted-foreground",
 };
-
-function youtubeEmbed(url: string): string | null {
-  const patterns = [
-    /(?:youtube\.com\/watch\?v=)([\w-]{11})/,
-    /(?:youtu\.be\/)([\w-]{11})/,
-    /(?:youtube\.com\/embed\/)([\w-]{11})/,
-    /(?:youtube\.com\/shorts\/)([\w-]{11})/,
-  ];
-  for (const re of patterns) {
-    const m = url.match(re);
-    if (m) return `https://www.youtube.com/embed/${m[1]}`;
-  }
-  return null;
-}
-
-function getYoutubeEmbeds(urls?: string[]): string[] {
-  if (!urls?.length) return [];
-  const embeds = urls
-    .map((u) => youtubeEmbed(u))
-    .filter((u): u is string => Boolean(u));
-  return Array.from(new Set(embeds));
-}
 
 export default async function PropertyPage({ params }: Params) {
   const { slug } = await params;
@@ -198,6 +177,25 @@ export default async function PropertyPage({ params }: Params) {
             streetAddress: p.location,
             addressCountry: "IN",
           },
+          ...(videoEmbeds.length
+            ? {
+                video: videoEmbeds.map((embed, index) => ({
+                  "@type": "VideoObject",
+                  name:
+                    videoEmbeds.length > 1
+                      ? `${p.title} - video ${index + 1}`
+                      : `${p.title} walkthrough`,
+                  description:
+                    p.seo?.metaDescription ||
+                    `${p.title} in ${p.location}, ${p.city}.`,
+                  thumbnailUrl: youtubeThumbnail(embed),
+                  embedUrl: embed,
+                  contentUrl: youtubeId(embed)
+                    ? `https://www.youtube.com/watch?v=${youtubeId(embed)}`
+                    : embed,
+                })),
+              }
+            : {}),
         }}
       />
       <Navbar phone={phone} />

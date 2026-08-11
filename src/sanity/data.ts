@@ -119,7 +119,10 @@ export async function getSitemapEntries(): Promise<SitemapEntry[]> {
   const docs = await client.fetch<SitemapEntry[]>(
     `*[_type == "property" && defined(slug.current) && seo.noIndex != true]{
       "slug": slug.current,
-      "updatedAt": _updatedAt
+      "updatedAt": _updatedAt,
+      title, location, city, priceLabel,
+      "description": seo.metaDescription,
+      youtubeUrl, youtubeUrls
     }`,
     {},
     { next: { tags: ["property"] } }

@@ -75,6 +75,13 @@ export type SiteSettings = {
 export type SitemapEntry = {
   slug: string;
   updatedAt?: string;
+  title?: string;
+  location?: string;
+  city?: string;
+  priceLabel?: string;
+  description?: string;
+  youtubeUrl?: string;
+  youtubeUrls?: string[];
 };
 
 export type Cta = {
