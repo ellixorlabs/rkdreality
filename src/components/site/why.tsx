@@ -54,7 +54,7 @@ export function Why() {
             </Reveal>
 
             <Reveal delay={1} className="relative mt-10">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-sm border border-border bg-secondary/50">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-sm bg-secondary/50">
                 <Image
                   src="/why-doodle.svg"
                   alt="Verified land documents being reviewed and approved"
