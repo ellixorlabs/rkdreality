@@ -213,7 +213,7 @@ export function Properties({
   }, [items, type, city, query]);
 
   return (
-    <section id="properties" className="relative scroll-mt-20 overflow-x-clip bg-sand/40 py-24 sm:py-32">
+    <section id="properties" className="relative scroll-mt-20 overflow-x-clip bg-sand/40 py-14 sm:py-16">
       <div className="mx-auto min-w-0 max-w-7xl px-5 sm:px-8">
         <Reveal className="max-w-2xl">
           <span className="kicker text-gold">

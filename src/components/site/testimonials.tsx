@@ -37,7 +37,7 @@ export function Testimonials({ items }: { items?: TestimonialInput[] }) {
     .map(toView);
 
   return (
-    <section id="testimonials" className="relative scroll-mt-20 bg-ivory py-24 sm:py-32">
+    <section id="testimonials" className="relative scroll-mt-20 bg-ivory py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal className="max-w-2xl">
           <span className="kicker text-gold">

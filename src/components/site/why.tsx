@@ -34,7 +34,7 @@ const pillars = [
 
 export function Why() {
   return (
-    <section id="why" className="relative bg-ivory py-24 sm:py-32">
+    <section id="why" className="relative bg-ivory pt-20 pb-12 sm:pt-24 sm:pb-14">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           {/* Left — statement + image */}
@@ -84,7 +84,7 @@ export function Why() {
             <ul>
               {pillars.map((p, i) => (
                 <Reveal as="li" key={p.no} delay={i}>
-                  <div className="group grid grid-cols-[auto_1fr] gap-6 border-t border-border py-8 first:border-t-0 sm:gap-10 sm:py-10">
+                  <div className="group grid grid-cols-[auto_1fr] gap-6 border-t border-border py-8 first:border-t-0 last:pb-0 sm:gap-10 sm:py-10 sm:last:pb-0">
                     <span className="font-serif text-2xl text-gold/70 sm:text-3xl">
                       {p.no}
                     </span>

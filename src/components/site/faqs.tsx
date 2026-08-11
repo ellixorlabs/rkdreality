@@ -18,7 +18,7 @@ export function Faqs({ items }: { items?: FaqItem[] }) {
   if (!items || items.length === 0) return null;
 
   return (
-    <section id="faqs" className="relative scroll-mt-20 bg-sand/40 pt-24 pb-8 sm:pt-32 sm:pb-10">
+    <section id="faqs" className="relative scroll-mt-20 bg-sand/40 pt-16 pb-8 sm:pt-20 sm:pb-8">
       <div className="mx-auto max-w-3xl px-5 sm:px-8">
         <Reveal className="text-center">
           <span className="kicker justify-center text-gold">

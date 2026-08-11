@@ -41,7 +41,7 @@ export function Process() {
   return (
     <section
       id="process"
-      className="grain relative isolate scroll-mt-20 overflow-hidden bg-forest-deep py-24 text-ivory sm:py-32"
+      className="grain relative isolate scroll-mt-20 overflow-hidden bg-forest-deep py-16 text-ivory sm:py-20"
     >
       <div className="aurora -z-10" />
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
