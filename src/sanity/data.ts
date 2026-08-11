@@ -4,6 +4,7 @@ import { client } from "./client";
 import type {
   Property,
   PropertyStatus,
+  FeatureItem,
   Seo,
   SiteSettings,
   HeroContent,
@@ -27,8 +28,13 @@ type RawProperty = {
   gallery?: string[];
   highlights?: string[];
   appreciation?: string;
+  approvalsLabel?: string;
   overview?: string[];
   amenities?: string[];
+  facilities?: FeatureItem[];
+  amenityItems?: FeatureItem[];
+  facilityKeys?: string[];
+  amenityKeys?: string[];
   locationHighlights?: string[];
   mapUrl?: string;
   youtubeUrl?: string;
@@ -51,9 +57,18 @@ function mapProperty(d: RawProperty): Property {
     image: d.image || undefined,
     highlights: d.highlights ?? [],
     appreciation: d.appreciation ?? "",
+    approvalsLabel: d.approvalsLabel?.trim() || undefined,
     gallery: d.gallery?.length ? d.gallery : undefined,
     overview: d.overview?.length ? d.overview : undefined,
     amenities: d.amenities?.length ? d.amenities : undefined,
+    facilities: d.facilities?.filter((f) => f?.label)?.length
+      ? d.facilities.filter((f) => f?.label)
+      : undefined,
+    amenityItems: d.amenityItems?.filter((f) => f?.label)?.length
+      ? d.amenityItems.filter((f) => f?.label)
+      : undefined,
+    facilityKeys: d.facilityKeys?.length ? d.facilityKeys : undefined,
+    amenityKeys: d.amenityKeys?.length ? d.amenityKeys : undefined,
     locationHighlights: d.locationHighlights?.length
       ? d.locationHighlights
       : undefined,
@@ -86,7 +101,10 @@ export async function getProperty(slug: string): Promise<Property | null> {
     `*[_type == "property" && slug.current == $slug][0]{
       _id, "slug": slug.current, title, location, city, propertyType, priceLabel,
       priceFrom, sizeLabel, status, image, gallery, highlights, appreciation,
-      overview, amenities, locationHighlights, mapUrl, youtubeUrl, youtubeUrls,
+      approvalsLabel,
+      overview, amenities, facilities[]{icon, label}, amenityItems[]{icon, label},
+      facilityKeys, amenityKeys,
+      locationHighlights, mapUrl, youtubeUrl, youtubeUrls,
       seo{metaTitle, metaDescription, keywords, ogImage, noIndex}
     }`,
     { slug },

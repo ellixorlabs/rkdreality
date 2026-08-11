@@ -1,5 +1,10 @@
 export type PropertyStatus = "Available" | "Few Plots Left" | "Sold Out";
 
+export type FeatureItem = {
+  icon: string;
+  label: string;
+};
+
 export type Seo = {
   metaTitle?: string;
   metaDescription?: string;
@@ -22,9 +27,14 @@ export type Property = {
   image?: string;
   highlights: string[];
   appreciation: string;
+  approvalsLabel?: string;
   gallery?: string[];
   overview?: string[];
   amenities?: string[];
+  facilities?: FeatureItem[];
+  amenityItems?: FeatureItem[];
+  facilityKeys?: string[];
+  amenityKeys?: string[];
   locationHighlights?: string[];
   mapUrl?: string;
   youtubeUrl?: string;

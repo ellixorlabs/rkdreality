@@ -6,6 +6,7 @@ import {
   ArrowLeft,
   BadgeCheck,
   CheckCircle2,
+  FileBadge,
   IndianRupee,
   MapPin,
   MessageCircle,
@@ -18,7 +19,15 @@ import { Navbar } from "@/components/site/navbar";
 import { Footer } from "@/components/site/footer";
 import { WhatsAppFloat } from "@/components/site/whatsapp-float";
 import { SiteGallery } from "@/components/site/site-gallery";
+import { FeatureCarousel } from "@/components/site/feature-carousel";
 import { Reveal } from "@/components/motion/reveal";
+import {
+  AMENITY_CATALOG,
+  FACILITY_CATALOG,
+  fromLegacyLabels,
+  fromLegacyObjects,
+  resolveCatalogItems,
+} from "@/lib/property-features";
 import {
   getProperty,
   getPropertySlugs,
@@ -121,6 +130,16 @@ export default async function PropertyPage({ params }: Params) {
           `Our team walks you through the title, encumbrance certificate, approvals and the full purchase process, so you can invest with documented, verifiable confidence rather than guesswork.`,
         ];
   const videoEmbeds = getYoutubeEmbeds(p.youtubeUrls);
+  const facilities =
+    resolveCatalogItems(p.facilityKeys, FACILITY_CATALOG).length
+      ? resolveCatalogItems(p.facilityKeys, FACILITY_CATALOG)
+      : fromLegacyObjects(p.facilities);
+  const amenityCards =
+    resolveCatalogItems(p.amenityKeys, AMENITY_CATALOG).length
+      ? resolveCatalogItems(p.amenityKeys, AMENITY_CATALOG)
+      : fromLegacyObjects(p.amenityItems).length
+        ? fromLegacyObjects(p.amenityItems)
+        : fromLegacyLabels(p.amenities);
 
   const facts = [
     { icon: IndianRupee, label: "Starting Price", value: p.priceLabel },
@@ -131,6 +150,11 @@ export default async function PropertyPage({ params }: Params) {
       icon: TrendingUp,
       label: "Growth Outlook",
       value: p.appreciation,
+    },
+    {
+      icon: FileBadge,
+      label: "Approvals",
+      value: p.approvalsLabel || "Verified documentation",
     },
   ].filter(Boolean) as { icon: typeof IndianRupee; label: string; value: string }[];
 
@@ -205,7 +229,7 @@ export default async function PropertyPage({ params }: Params) {
         {/* Key facts */}
         <section className="border-b border-border bg-ivory">
           <div className="mx-auto max-w-7xl px-5 py-10 sm:px-8">
-            <div className="grid grid-cols-2 gap-px overflow-hidden rounded-sm border border-border bg-border sm:grid-cols-3 lg:grid-cols-5">
+            <div className="grid grid-cols-2 gap-px overflow-hidden rounded-sm border border-border bg-border sm:grid-cols-3 lg:grid-cols-6">
               {facts.map((f) => (
                 <div key={f.label} className="bg-card p-5">
                   <div className="flex items-center gap-1.5 text-[0.7rem] uppercase tracking-[0.12em] text-muted-foreground">
@@ -262,24 +286,8 @@ export default async function PropertyPage({ params }: Params) {
                   </Reveal>
                 )}
 
-                {p.amenities && p.amenities.length > 0 && (
-                  <Reveal delay={1} className="mt-12">
-                    <h2 className="font-serif text-2xl text-foreground">
-                      Amenities &amp; Features
-                    </h2>
-                    <ul className="mt-5 grid gap-3 sm:grid-cols-2">
-                      {p.amenities.map((a) => (
-                        <li
-                          key={a}
-                          className="flex items-center gap-2.5 text-sm text-muted-foreground"
-                        >
-                          <CheckCircle2 className="size-4 shrink-0 text-gold" />
-                          {a}
-                        </li>
-                      ))}
-                    </ul>
-                  </Reveal>
-                )}
+                <FeatureCarousel title="Our Facilities" items={facilities} />
+                <FeatureCarousel title="Our Amenities" items={amenityCards} />
 
                 {p.gallery && p.gallery.length > 0 && (
                   <Reveal delay={1} className="mt-14 min-w-0 overflow-hidden">
