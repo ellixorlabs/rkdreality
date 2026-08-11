@@ -1,4 +1,4 @@
-export const SITE_URL = "https://rkdreality.com";
+export const SITE_URL = "https://www.rkdreality.com";
 
 export const SITE_NAME = "RKD Reality";
 
