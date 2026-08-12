@@ -1,30 +1,37 @@
 import {NextResponse} from "next/server";
 import type {NextRequest} from "next/server";
 
+function hostnameOf(request: NextRequest) {
+  const raw =
+    request.headers.get("x-forwarded-host") ||
+    request.headers.get("host") ||
+    request.nextUrl.hostname;
+  return raw.split(",")[0]?.trim().split(":")[0] ?? "";
+}
+
 function isAdminHost(host: string) {
   return host === "admin.rkdreality.com" || host.startsWith("admin.");
 }
 
 export function middleware(request: NextRequest) {
-  const host = request.headers.get("host")?.split(":")[0] ?? "";
+  const host = hostnameOf(request);
   const {pathname} = request.nextUrl;
 
-  if (isAdminHost(host) && pathname === "/") {
-    const url = request.nextUrl.clone();
-    url.pathname = "/studio";
-    return NextResponse.redirect(url);
+  if (!isAdminHost(host)) return NextResponse.next();
+
+  if (
+    pathname.startsWith("/_next") ||
+    pathname.startsWith("/api") ||
+    pathname.startsWith("/studio")
+  ) {
+    return NextResponse.next();
   }
 
-  const requestHeaders = new Headers(request.headers);
-  if (pathname.startsWith("/studio") || isAdminHost(host)) {
-    requestHeaders.set("x-rkd-studio", "1");
-  }
-
-  return NextResponse.next({
-    request: {headers: requestHeaders},
-  });
+  const url = request.nextUrl.clone();
+  url.pathname = pathname === "/" ? "/studio" : `/studio${pathname}`;
+  return NextResponse.rewrite(url);
 }
 
 export const config = {
-  matcher: ["/", "/studio/:path*"],
+  matcher: ["/((?!_next/static|_next/image|favicon.ico|.*\\..*).*)"],
 };

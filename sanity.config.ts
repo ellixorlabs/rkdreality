@@ -7,12 +7,20 @@ import {schemaTypes} from "@/sanity/schemaTypes";
 import {structure} from "@/sanity/structure";
 import {dataset, projectId} from "@/sanity/env";
 
+function studioBasePath() {
+  if (typeof window === "undefined") return "/studio";
+  const host = window.location.hostname.replace(/^www\./, "");
+  return host === "admin.rkdreality.com" || host.startsWith("admin.")
+    ? "/"
+    : "/studio";
+}
+
 const SINGLETON_TYPES = new Set(["siteSettings", "hero", "founder"]);
 
 export default defineConfig({
   name: "default",
   title: "RKD Reality",
-  basePath: "/studio",
+  basePath: studioBasePath(),
   projectId,
   dataset,
   plugins: [structureTool({structure}), visionTool()],
