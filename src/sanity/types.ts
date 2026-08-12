@@ -70,6 +70,8 @@ export type SiteSettings = {
   contact?: ContactInfo;
   footerColumns?: FooterColumn[];
   defaultSeo?: Seo;
+  whyImage?: string;
+  whyImageAlt?: string;
 };
 
 export type SitemapEntry = {

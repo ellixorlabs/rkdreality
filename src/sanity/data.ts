@@ -144,7 +144,9 @@ export async function getSiteSettings(): Promise<SiteSettings | null> {
     `*[_type == "siteSettings" && _id == "siteSettings"][0]{
       title, tagline, description, logo, approvals, contact,
       footerColumns[]{title, links[]{label, href}},
-      defaultSeo{metaTitle, metaDescription, keywords, ogImage, noIndex}
+      defaultSeo{metaTitle, metaDescription, keywords, ogImage, noIndex},
+      "whyImage": whyImage.asset->url,
+      "whyImageAlt": whyImage.alt
     }`,
     {},
     { next: { tags: ["siteSettings"] } }

@@ -32,7 +32,15 @@ const pillars = [
   },
 ];
 
-export function Why() {
+export function Why({
+  imageSrc,
+  imageAlt,
+}: {
+  imageSrc?: string;
+  imageAlt?: string;
+} = {}) {
+  const src = imageSrc || "/why-doodle.svg";
+  const isCustom = Boolean(imageSrc);
   return (
     <section id="why" className="relative bg-ivory pt-20 pb-12 sm:pt-24 sm:pb-14">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
@@ -56,12 +64,17 @@ export function Why() {
             <Reveal delay={1} className="relative mt-10">
               <div className="relative aspect-[4/3] overflow-hidden rounded-sm bg-secondary/50">
                 <Image
-                  src="/why-doodle.svg"
-                  alt="Verified land documents being reviewed and approved"
+                  src={src}
+                  alt={
+                    imageAlt ||
+                    "Verified land documents being reviewed and approved"
+                  }
                   fill
                   sizes="(min-width: 1024px) 35vw, 100vw"
-                  unoptimized
-                  className="object-contain p-8"
+                  unoptimized={!isCustom}
+                  className={
+                    isCustom ? "object-cover" : "object-contain p-8"
+                  }
                 />
               </div>
               <motion.div

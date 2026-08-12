@@ -75,7 +75,7 @@ export default async function Home() {
       <Navbar phone={contact?.phone} />
       <main className="flex-1">
         <Hero data={hero} />
-        <Why />
+        <Why imageSrc={settings?.whyImage} imageAlt={settings?.whyImageAlt} />
         <Properties
           items={properties}
           propertyTypes={propertyTypes}

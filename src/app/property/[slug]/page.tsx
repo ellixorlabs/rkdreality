@@ -290,14 +290,14 @@ export default async function PropertyPage({ params }: Params) {
               {/* Main column */}
               <div className="min-w-0 lg:col-span-8">
                 <Reveal>
-                  <span className="kicker text-gold">
+                  <span className="kicker text-[0.8rem] tracking-[0.22em] text-gold">
                     About this property
                   </span>
                   <div className="mt-6 space-y-5">
                     {overview.map((para, i) => (
                       <p
                         key={i}
-                        className="text-base leading-relaxed text-muted-foreground"
+                        className="text-lg leading-relaxed text-muted-foreground sm:text-xl sm:leading-[1.65]"
                       >
                         {para}
                       </p>
