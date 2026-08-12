@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { Cormorant_Garamond, Mulish } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
@@ -70,11 +71,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const isStudio = (await headers()).get("x-rkd-studio") === "1";
+
   return (
     <html
       lang="en"
@@ -82,46 +85,52 @@ export default function RootLayout({
       className={`${mulish.variable} ${cormorant.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
-        <JsonLd
-          data={{
-            "@context": "https://schema.org",
-            "@graph": [
-              {
-                "@type": "RealEstateAgent",
-                "@id": `${SITE_URL}/#organization`,
-                name: SITE_NAME,
-                url: SITE_URL,
-                email: "contact@rkdreality.com",
-                telephone: "+91 97400 91582",
-                areaServed: ["Bengaluru", "Mysuru", "Nelamangala"],
-                address: {
-                  "@type": "PostalAddress",
-                  streetAddress: "#08, Hormavu Kalkare Main Road",
-                  addressLocality: "Bengaluru",
-                  postalCode: "560043",
-                  addressCountry: "IN",
-                },
-              },
-              {
-                "@type": "WebSite",
-                "@id": `${SITE_URL}/#website`,
-                url: SITE_URL,
-                name: SITE_NAME,
-                publisher: { "@id": `${SITE_URL}/#organization` },
-                creator: {
-                  "@type": "Organization",
-                  name: ELLIXOR_LABS.name,
-                  alternateName: "ELLIXOR LABS",
-                  url: ELLIXOR_LABS.url,
-                  sameAs: [ELLIXOR_LABS.url],
-                },
-              },
-            ],
-          }}
-        />
-        <Loader />
-        {children}
-        <Analytics />
+        {isStudio ? (
+          children
+        ) : (
+          <>
+            <JsonLd
+              data={{
+                "@context": "https://schema.org",
+                "@graph": [
+                  {
+                    "@type": "RealEstateAgent",
+                    "@id": `${SITE_URL}/#organization`,
+                    name: SITE_NAME,
+                    url: SITE_URL,
+                    email: "contact@rkdreality.com",
+                    telephone: "+91 97400 91582",
+                    areaServed: ["Bengaluru", "Mysuru", "Nelamangala"],
+                    address: {
+                      "@type": "PostalAddress",
+                      streetAddress: "#08, Hormavu Kalkare Main Road",
+                      addressLocality: "Bengaluru",
+                      postalCode: "560043",
+                      addressCountry: "IN",
+                    },
+                  },
+                  {
+                    "@type": "WebSite",
+                    "@id": `${SITE_URL}/#website`,
+                    url: SITE_URL,
+                    name: SITE_NAME,
+                    publisher: { "@id": `${SITE_URL}/#organization` },
+                    creator: {
+                      "@type": "Organization",
+                      name: ELLIXOR_LABS.name,
+                      alternateName: "ELLIXOR LABS",
+                      url: ELLIXOR_LABS.url,
+                      sameAs: [ELLIXOR_LABS.url],
+                    },
+                  },
+                ],
+              }}
+            />
+            <Loader />
+            {children}
+            <Analytics />
+          </>
+        )}
       </body>
     </html>
   );

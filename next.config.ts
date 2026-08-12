@@ -8,6 +8,9 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: path.join(__dirname),
   },
+  compiler: {
+    styledComponents: true,
+  },
   images: {
     // All remote images are optimised through the wsrv.nl CDN.
     // See src/lib/image-loader.ts
